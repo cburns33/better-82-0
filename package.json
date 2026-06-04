@@ -1,0 +1,9 @@
+{
+  "name": "better-82-0",
+  "private": true,
+  "description": "Monorepo root — Vercel builds the Vite app in web/",
+  "scripts": {
+    "build": "npm run build --prefix web",
+    "dev": "npm run dev --prefix web"
+  }
+}

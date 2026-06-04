@@ -1,0 +1,5 @@
+scripts/
+data/cache/
+requirements.txt
+*.pyc
+__pycache__/

@@ -16,8 +16,10 @@ npm run dev
 
 1. Push this repo to GitHub.
 2. Import the repo on [Vercel](https://vercel.com/new).
-3. Set **Root Directory** to `web` (important).
-4. Deploy — Vercel reads `web/vercel.json` and serves `web/dist`.
+3. Leave **Root Directory** empty (repo root). The root `vercel.json` builds the `web/` Vite app and ignores the Python data scripts.
+4. Deploy — output is `web/dist`.
+
+If Vercel still detects Python, set **Root Directory** to `web` in Project Settings → General and redeploy.
 
 Share the `*.vercel.app` URL. Optional: add a custom domain in Vercel.
 
