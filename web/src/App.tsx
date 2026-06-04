@@ -30,9 +30,23 @@ function random<T>(arr: T[]): T {
   return arr[Math.floor(Math.random() * arr.length)]!
 }
 
-function AppShell({ children }: { children: ReactNode }) {
+function AppShell({
+  children,
+  constrain,
+}: {
+  children: ReactNode
+  /** Lock to viewport height so inner lists can scroll (draft screen). */
+  constrain?: boolean
+}) {
   return (
-    <div className="min-h-screen flex flex-col max-w-2xl mx-auto px-4 py-6 sm:py-8">{children}</div>
+    <div
+      className={cn(
+        'flex flex-col max-w-2xl mx-auto px-4 py-6 sm:py-8',
+        constrain ? 'h-dvh max-h-dvh overflow-hidden' : 'min-h-screen',
+      )}
+    >
+      {children}
+    </div>
   )
 }
 
@@ -237,8 +251,8 @@ function App() {
   const openLabel = openPositions.length > 0 ? openPositions.join(', ') : '—'
 
   return (
-    <AppShell>
-      <header className="text-center mb-6">
+    <AppShell constrain>
+      <header className="shrink-0 text-center mb-6">
         <h1 className="text-2xl font-bold tracking-tight">Better 82-0</h1>
         <p className="text-sm text-muted-foreground mt-1">
           Round {round + 1}/{ROUNDS} · Open:{' '}
@@ -249,7 +263,7 @@ function App() {
         </Badge>
       </header>
 
-      <div className="grid grid-cols-5 gap-1.5 mb-6">
+      <div className="shrink-0 grid grid-cols-5 gap-1.5 mb-6">
         {POSITIONS.map((pos, i) => {
           const filled = roster[i]
           const isOpen = filled == null
@@ -270,7 +284,7 @@ function App() {
         })}
       </div>
 
-      <Card className="mb-6">
+      <Card className="shrink-0 mb-6">
         <CardHeader className="text-center pb-2">
           <CardDescription className="uppercase tracking-widest text-xs">
             Slot machine
@@ -321,7 +335,7 @@ function App() {
       </Card>
 
       {pendingPick && (
-        <Card className="mb-4 border-primary/40 bg-primary/5">
+        <Card className="shrink-0 mb-4 border-primary/40 bg-primary/5">
           <CardContent className="pt-6 pb-6">
             <p className="text-sm font-semibold text-center mb-4">
               Assign <span className="text-primary">{pendingPick.player}</span> to:
@@ -341,13 +355,15 @@ function App() {
       )}
 
       {phase === 'pick' && !pendingPick && (
-        <section className="flex-1 min-h-0 flex flex-col">
-          <PositionFilter
-            value={positionFilter}
-            onChange={setPositionFilter}
-            openPositions={openPositions}
-          />
-          <p className="text-sm text-muted-foreground mb-3">
+        <section className="flex flex-1 min-h-0 flex-col overflow-hidden">
+          <div className="shrink-0">
+            <PositionFilter
+              value={positionFilter}
+              onChange={setPositionFilter}
+              openPositions={openPositions}
+            />
+          </div>
+          <p className="shrink-0 text-sm text-muted-foreground mb-3">
             {pool.length} player{pool.length === 1 ? '' : 's'} · {slot?.team} ({slot?.decadeLabel})
             {positionFilter !== 'ALL' ? ` · ${positionFilter}` : ''}
             {mode === 'hoopiq' ? ' · A–Z' : ' · by strength'}
@@ -359,7 +375,7 @@ function App() {
                 : 'No eligible players. Try a skip.'}
             </p>
           ) : (
-            <ScrollArea className="max-h-[50vh] flex-1">
+            <ScrollArea className="flex-1 min-h-0">
               <ul className="space-y-2 pr-2">
                 {pool.map((p) => {
                   const eligible = getEligibleSlots(p, roster).map((s) => s.position)
