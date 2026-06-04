@@ -15,6 +15,8 @@ import {
   getOpenSlots,
   getPool,
   loadPlayers,
+  resolveValidSlot,
+  type SpinResolveOptions,
 } from '@/lib/data'
 import { sortPlayerPool } from '@/lib/sortPool'
 import { calculateTeamResult } from '@/lib/simulation'
@@ -26,10 +28,6 @@ import { DECADES, POSITIONS } from '@/types'
 type Phase = 'menu' | 'spin' | 'pick' | 'done'
 
 const ROUNDS = 5
-
-function random<T>(arr: T[]): T {
-  return arr[Math.floor(Math.random() * arr.length)]!
-}
 
 function AppShell({
   children,
@@ -99,20 +97,9 @@ function App() {
   )
 
   const resolveSpin = useCallback(
-    (opts?: { keepTeam?: boolean; keepDecade?: boolean }): SlotResult => {
-      const availableEras = DECADES.map((d) => d.era).filter((e) => !usedEras.has(e))
-      const era =
-        opts?.keepDecade && slot
-          ? slot.era
-          : availableEras.length > 0
-            ? random(availableEras)
-            : random(DECADES.map((d) => d.era))
-
-      const team = opts?.keepTeam && slot ? slot.team : random(teamList)
-      const decadeLabel = DECADES.find((d) => d.era === era)!.label
-      return { team, era, decadeLabel }
-    },
-    [slot, teamList, usedEras],
+    (opts?: SpinResolveOptions): SlotResult =>
+      resolveValidSlot(teams, teamList, roster, usedIds, usedEras, opts ?? {}, slot),
+    [teams, teamList, roster, usedIds, usedEras, slot],
   )
 
   const completeSpin = useCallback(() => {
@@ -125,7 +112,7 @@ function App() {
   }, [])
 
   const spinSlot = useCallback(
-    (opts?: { keepTeam?: boolean; keepDecade?: boolean }) => {
+    (opts?: SpinResolveOptions) => {
       setPendingPick(null)
       setPositionFilter('ALL')
       setSlot(null)
@@ -184,17 +171,17 @@ function App() {
   }
 
   const skipTeam = () => {
-    if (!teamSkipLeft) return
+    if (!teamSkipLeft || !slot) return
     setTeamSkipLeft(false)
     setPendingPick(null)
-    spinSlot()
+    spinSlot({ keepDecade: true, excludeTeam: slot.team })
   }
 
   const skipDecade = () => {
     if (!decadeSkipLeft || !slot) return
     setDecadeSkipLeft(false)
     setPendingPick(null)
-    spinSlot({ keepTeam: true })
+    spinSlot({ keepTeam: true, excludeEra: slot.era })
   }
 
   if (phase === 'menu') {
