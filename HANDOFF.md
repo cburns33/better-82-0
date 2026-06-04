@@ -39,9 +39,9 @@ better-82-0/
 │   └── enrich_players.py
 └── web/                    ← Vite + React 19 + Tailwind v4 app
     ├── src/
-    │   ├── App.tsx         ← game state machine, skips, slot UI wiring
+    │   ├── App.tsx         ← game state machine, split layout, skips, pick confirm bar
     │   ├── components/
-    │   │   ├── SlotMachine.tsx
+    │   │   ├── SlotMachine.tsx   ← GSAP reels (team + decade)
     │   │   ├── PlayerCard.tsx
     │   │   ├── PositionFilter.tsx
     │   │   └── ui/         ← shadcn-style primitives (manual, no CLI)
@@ -79,7 +79,13 @@ better-82-0/
 | HoopIQ mode | Stats hidden on cards; pool A–Z |
 | Win calc | **Lineup averages** of advanced stats (not sums); curve `82 × min(ovr/110, 1)^exp` (Classic exp 1.15, HoopIQ geometric mean + exp 2.2) |
 
-**Slot machine UI:** Single mounted `SlotMachine` for spin + pick (`machineTarget = spinTarget ?? slot`). Reels spin forward from current offset; locked reel on skip team/decade. No center payline.
+**Slot machine UI (current):**
+
+- **Layout:** `md+` split — fixed **272px left column** (slot + skips during pick); **pick panel slides in on the right** when `phase === 'pick'`. Mobile: **stacked** (slot on top, list below). Shell `max-w-5xl`; slot column does not shrink after spin.
+- **Animation:** GSAP (`gsap` + `@gsap/react`) in `SlotMachine.tsx` — anticipation nudge, decelerating spin, staggered reels (team then decade), bounce on lock. Strip position **rewinds to cycle 0** at spin start so animation never scrolls past strip end; **3 buffer rows** at strip tail for overshoot.
+- **Pick flow:** Tap player → **sticky bottom confirm bar** (single slot = Confirm/Cancel; multi = position buttons). No instant assign.
+- **Single mounted machine:** `machineTarget = spinTarget ?? slot` for spin + pick; locked reel on skip team/decade. Reels stay **fixed size** — no settle/shrink morph (removed `slotSettled`).
+- **Player list:** Compact rows (`PlayerCard density="compact"`), horizontal position filters during pick.
 
 **Valid spins:** `resolveValidSlot()` in `web/src/lib/data.ts` only picks team+era combos where `getPool()` is non-empty for current open slots. Prevents empty lists from impossible spins (e.g. CHA 1970s has no rows).
 
@@ -102,8 +108,8 @@ better-82-0/
 
 | Change | Start here |
 |--------|------------|
-| Draft / spin / skips | `web/src/App.tsx`, `web/src/lib/data.ts` |
-| Slot animation | `web/src/components/SlotMachine.tsx` |
+| Draft / spin / skips / layout | `web/src/App.tsx`, `web/src/lib/data.ts` |
+| Slot animation (GSAP) | `web/src/components/SlotMachine.tsx` — tune `SPIN_CYCLES`, `STAGGER_S`, durations in timeline |
 | Win formula / grades | `web/src/lib/simulation.ts` |
 | Player card / metrics display | `web/src/components/PlayerCard.tsx` |
 | New metrics / data refresh | `scripts/*`, regenerate `players_advanced.json` |
@@ -115,6 +121,7 @@ better-82-0/
 
 - **TypeScript:** strict; path alias `@/` → `web/src/`.
 - **UI:** Tailwind v4 + manual shadcn-style components (`web/src/components/ui/`). shadcn CLI init failed on Windows — don’t rerun without user ask.
+- **Animation:** GSAP for slot reels only; prefer CSS transitions for layout (pick panel slide-in).
 - **Scope:** Minimal diffs; match existing patterns.
 - **Git:** Commit/push only when user requests.
 - **Tests:** No test suite yet; verify with `cd web && npm run build`.
@@ -134,7 +141,8 @@ better-82-0/
 1. Open workspace at **project root**, not home.
 2. New chat per milestone (bugs vs big UI pass) is fine; paste a 3-bullet summary or point to this file.
 3. For bugs: repro steps + deploy log + screenshot.
-4. Bundle size ~3.7MB JS (large JSON import) — code-split only if user asks.
+4. Bundle size ~3.85MB JS (large JSON import + GSAP) — code-split only if user asks.
+5. **Don’t reintroduce** shrink/settle on the slot module — use split layout or hard swap if pick phase needs more space.
 
 ---
 
@@ -151,6 +159,7 @@ Update this section when merging meaningful work.
 | `42d3802` / `1c3c580` | Slot machine component + deploy fix |
 | `d8c3cee` | `resolveValidSlot`, skip decade exclude era, skip team keep decade |
 | `342b061` | Single SlotMachine instance, spin from current offset, remove payline |
+| `3c630da` | Split layout (slot left / pick right), GSAP reels + strip bounds fix, compact list, sticky confirm, UI polish |
 
 ---
 
@@ -160,6 +169,7 @@ Update this section when merging meaningful work.
 - Sound on slot stop
 - Further simulation tuning vs original 82-0 feel
 - Custom domain on Vercel
+- Wider pick panel animation tuning; optional desktop-only roster beside slot
 
 ---
 
