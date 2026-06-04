@@ -2,6 +2,7 @@ import { Trophy } from 'lucide-react'
 import { useCallback, useMemo, useState, type ReactNode } from 'react'
 import { PlayerCard } from '@/components/PlayerCard'
 import { PositionFilter, type PositionFilterValue } from '@/components/PositionFilter'
+import { SlotMachine } from '@/components/SlotMachine'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -61,7 +62,9 @@ function App() {
   const [usedIds, setUsedIds] = useState<Set<string>>(() => new Set())
   const [usedEras, setUsedEras] = useState<Set<Era>>(() => new Set())
   const [slot, setSlot] = useState<SlotResult | null>(null)
+  const [spinTarget, setSpinTarget] = useState<SlotResult | null>(null)
   const [spinning, setSpinning] = useState(false)
+  const [spinLocks, setSpinLocks] = useState({ team: false, decade: false })
   const [teamSkipLeft, setTeamSkipLeft] = useState(true)
   const [decadeSkipLeft, setDecadeSkipLeft] = useState(true)
   const [pendingPick, setPendingPick] = useState<Player | null>(null)
@@ -69,7 +72,11 @@ function App() {
 
   const openSlots = useMemo(() => getOpenSlots(roster), [roster])
   const openPositions = useMemo(() => openSlots.map((s) => s.position), [openSlots])
-  const teamList = useMemo(() => teams.map((t) => t.abbreviation), [teams])
+  const teamList = useMemo(
+    () => teams.map((t) => t.abbreviation).sort((a, b) => a.localeCompare(b)),
+    [teams],
+  )
+  const decadeLabels = useMemo(() => DECADES.map((d) => d.label), [])
 
   const pool = useMemo(() => {
     if (!slot || phase !== 'pick') return []
@@ -91,31 +98,43 @@ function App() {
     [phase, roster, mode],
   )
 
-  const spinSlot = useCallback(
-    (opts?: { keepTeam?: boolean; keepDecade?: boolean }) => {
-      setSpinning(true)
-      setPhase('spin')
-      setPendingPick(null)
-      setPositionFilter('ALL')
+  const resolveSpin = useCallback(
+    (opts?: { keepTeam?: boolean; keepDecade?: boolean }): SlotResult => {
+      const availableEras = DECADES.map((d) => d.era).filter((e) => !usedEras.has(e))
+      const era =
+        opts?.keepDecade && slot
+          ? slot.era
+          : availableEras.length > 0
+            ? random(availableEras)
+            : random(DECADES.map((d) => d.era))
 
-      window.setTimeout(() => {
-        const availableEras = DECADES.map((d) => d.era).filter((e) => !usedEras.has(e))
-        const era =
-          opts?.keepDecade && slot
-            ? slot.era
-            : availableEras.length > 0
-              ? random(availableEras)
-              : random(DECADES.map((d) => d.era))
-
-        const team = opts?.keepTeam && slot ? slot.team : random(teamList)
-        const decadeLabel = DECADES.find((d) => d.era === era)!.label
-
-        setSlot({ team, era, decadeLabel })
-        setSpinning(false)
-        setPhase('pick')
-      }, 900)
+      const team = opts?.keepTeam && slot ? slot.team : random(teamList)
+      const decadeLabel = DECADES.find((d) => d.era === era)!.label
+      return { team, era, decadeLabel }
     },
     [slot, teamList, usedEras],
+  )
+
+  const completeSpin = useCallback(() => {
+    setSpinTarget((target) => {
+      if (target) setSlot(target)
+      return null
+    })
+    setSpinning(false)
+    setPhase('pick')
+  }, [])
+
+  const spinSlot = useCallback(
+    (opts?: { keepTeam?: boolean; keepDecade?: boolean }) => {
+      setPendingPick(null)
+      setPositionFilter('ALL')
+      setSlot(null)
+      setSpinLocks({ team: Boolean(opts?.keepTeam), decade: Boolean(opts?.keepDecade) })
+      setSpinTarget(resolveSpin(opts))
+      setSpinning(true)
+      setPhase('spin')
+    },
+    [resolveSpin],
   )
 
   const startGame = (selectedMode: GameMode) => {
@@ -125,6 +144,8 @@ function App() {
     setUsedIds(new Set())
     setUsedEras(new Set())
     setSlot(null)
+    setSpinTarget(null)
+    setSpinning(false)
     setPendingPick(null)
     setPositionFilter('ALL')
     setTeamSkipLeft(true)
@@ -291,18 +312,61 @@ function App() {
           </CardDescription>
         </CardHeader>
         <CardContent className="text-center pb-6">
-          {spinning ? (
-            <p className="text-2xl font-bold animate-pulse text-primary">Spinning…</p>
+          {spinning && spinTarget ? (
+            <SlotMachine
+              teamOptions={teamList}
+              decadeOptions={decadeLabels}
+              target={{ team: spinTarget.team, decadeLabel: spinTarget.decadeLabel }}
+              spinning
+              lockTeam={spinLocks.team}
+              lockDecade={spinLocks.decade}
+              onComplete={completeSpin}
+              renderTeam={(team, active) => {
+                const colors = teamColors(team)
+                return (
+                  <Badge
+                    className={cn(
+                      'text-xl font-black px-4 py-2 h-auto border-0 transition-transform',
+                      active && 'scale-105 ring-2 ring-primary/50',
+                    )}
+                    style={{ backgroundColor: colors.bg, color: colors.text }}
+                  >
+                    {team}
+                  </Badge>
+                )
+              }}
+              renderDecade={(label, active) => (
+                <span
+                  className={cn(
+                    'text-2xl font-bold text-primary tabular-nums transition-transform',
+                    active && 'scale-110',
+                  )}
+                >
+                  {label}
+                </span>
+              )}
+            />
           ) : slot && slotColors ? (
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Badge
-                className="text-2xl font-black px-4 py-2 h-auto border-0"
-                style={{ backgroundColor: slotColors.bg, color: slotColors.text }}
-              >
-                {slot.team}
-              </Badge>
-              <span className="text-2xl font-bold text-primary">{slot.decadeLabel}</span>
-            </div>
+            <SlotMachine
+              teamOptions={teamList}
+              decadeOptions={decadeLabels}
+              target={{ team: slot.team, decadeLabel: slot.decadeLabel }}
+              spinning={false}
+              renderTeam={(team) => {
+                const colors = teamColors(team)
+                return (
+                  <Badge
+                    className="text-xl font-black px-4 py-2 h-auto border-0"
+                    style={{ backgroundColor: colors.bg, color: colors.text }}
+                  >
+                    {team}
+                  </Badge>
+                )
+              }}
+              renderDecade={(label) => (
+                <span className="text-2xl font-bold text-primary tabular-nums">{label}</span>
+              )}
+            />
           ) : (
             <Button onClick={() => spinSlot()}>Spin</Button>
           )}
