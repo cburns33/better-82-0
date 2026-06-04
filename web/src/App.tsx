@@ -1,6 +1,12 @@
-import { useCallback, useMemo, useState } from 'react'
-import { PlayerCard } from './components/PlayerCard'
-import { PositionFilter, type PositionFilterValue } from './components/PositionFilter'
+import { Trophy } from 'lucide-react'
+import { useCallback, useMemo, useState, type ReactNode } from 'react'
+import { PlayerCard } from '@/components/PlayerCard'
+import { PositionFilter, type PositionFilterValue } from '@/components/PositionFilter'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { ScrollArea } from '@/components/ui/scroll-area'
+import { Separator } from '@/components/ui/separator'
 import {
   buildTeams,
   filterPoolByPosition,
@@ -8,12 +14,13 @@ import {
   getOpenSlots,
   getPool,
   loadPlayers,
-} from './lib/data'
-import { sortPlayerPool } from './lib/sortPool'
-import { calculateTeamResult } from './lib/simulation'
-import { teamColors } from './lib/teams'
-import type { Era, GameMode, Player, SlotResult } from './types'
-import { DECADES, POSITIONS } from './types'
+} from '@/lib/data'
+import { sortPlayerPool } from '@/lib/sortPool'
+import { calculateTeamResult } from '@/lib/simulation'
+import { teamColors } from '@/lib/teams'
+import { cn } from '@/lib/utils'
+import type { Era, GameMode, Player, SlotResult } from '@/types'
+import { DECADES, POSITIONS } from '@/types'
 
 type Phase = 'menu' | 'spin' | 'pick' | 'done'
 
@@ -21,6 +28,12 @@ const ROUNDS = 5
 
 function random<T>(arr: T[]): T {
   return arr[Math.floor(Math.random() * arr.length)]!
+}
+
+function AppShell({ children }: { children: ReactNode }) {
+  return (
+    <div className="min-h-screen flex flex-col max-w-2xl mx-auto px-4 py-6 sm:py-8">{children}</div>
+  )
 }
 
 function App() {
@@ -152,63 +165,71 @@ function App() {
   if (phase === 'menu') {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center px-4 py-12">
-        <h1 className="text-4xl font-bold tracking-tight text-center">82-0</h1>
-        <p className="mt-2 text-[var(--color-muted)] text-center max-w-md">
-          Build an all-time starting five (1970s–2020s) using WS/48, VORP, OBPM, DBPM, and PER.
-          Local fan build — not affiliated with 82-0.com.
-        </p>
-        <div className="mt-10 flex flex-col gap-3 w-full max-w-xs">
-          <button
-            type="button"
-            onClick={() => startGame('classic')}
-            className="rounded-lg bg-amber-500 hover:bg-amber-400 text-black font-semibold py-3 px-6 transition-colors"
-          >
-            Classic — stats visible
-          </button>
-          <button
-            type="button"
-            onClick={() => startGame('hoopiq')}
-            className="rounded-lg border border-[var(--color-border)] hover:border-amber-400/50 py-3 px-6 font-semibold transition-colors"
-          >
-            HoopIQ — stats hidden
-          </button>
+        <div className="flex items-center gap-2 mb-2 text-primary">
+          <Trophy className="size-8" aria-hidden />
         </div>
-        <p className="mt-8 text-xs text-[var(--color-muted)]">{players.length.toLocaleString()} player entries loaded</p>
+        <h1 className="text-4xl font-bold tracking-tight text-center">Better 82-0</h1>
+        <p className="mt-3 text-muted-foreground text-center max-w-md text-sm leading-relaxed">
+          Build an all-time starting five (1970s–2020s) with WS/48, VORP, OBPM, DBPM, and PER.
+          Fan project — not affiliated with 82-0.com.
+        </p>
+        <Card className="mt-10 w-full max-w-sm">
+          <CardHeader className="text-center">
+            <CardTitle className="text-base">Choose mode</CardTitle>
+            <CardDescription>Five rounds · one pick per slot spin</CardDescription>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-3">
+            <Button size="lg" onClick={() => startGame('classic')}>
+              Classic — stats visible
+            </Button>
+            <Button size="lg" variant="outline" onClick={() => startGame('hoopiq')}>
+              HoopIQ — stats hidden
+            </Button>
+          </CardContent>
+        </Card>
+        <p className="mt-6 text-xs text-muted-foreground">
+          {players.length.toLocaleString()} player entries
+        </p>
       </div>
     )
   }
 
   if (phase === 'done' && result) {
     return (
-      <div className="min-h-screen flex flex-col items-center px-4 py-10">
-        <h1 className="text-3xl font-bold">Season complete</h1>
-        <div
-          className="mt-8 rounded-2xl border-2 p-8 text-center w-full max-w-md"
+      <AppShell>
+        <header className="text-center mb-6">
+          <h1 className="text-2xl font-bold tracking-tight">Season complete</h1>
+        </header>
+        <Card
+          className="border-2 text-center"
           style={{ borderColor: result.color }}
         >
-          <p className="text-6xl font-black tabular-nums" style={{ color: result.color }}>
-            {result.wins}–{result.losses}
-          </p>
-          <p className="mt-2 text-xl font-semibold" style={{ color: result.color }}>
-            {result.grade} · {result.label}
-          </p>
-          <p className="mt-4 text-[var(--color-muted)]">Team strength: {result.teamOvr}</p>
-        </div>
-        <div className="mt-8 w-full max-w-lg space-y-2">
+          <CardContent className="pt-8 pb-8">
+            <p
+              className="text-6xl font-black tabular-nums tracking-tight"
+              style={{ color: result.color }}
+            >
+              {result.wins}–{result.losses}
+            </p>
+            <p className="mt-2 text-xl font-semibold" style={{ color: result.color }}>
+              {result.grade} · {result.label}
+            </p>
+            <p className="mt-4 text-sm text-muted-foreground">
+              Team strength <span className="font-mono text-foreground">{result.teamOvr}</span>
+            </p>
+          </CardContent>
+        </Card>
+        <div className="mt-6 space-y-2">
           {roster.map((p, i) =>
             p ? (
               <PlayerCard key={p.id} player={p} mode="classic" eligiblePositions={[POSITIONS[i]!]} />
             ) : null,
           )}
         </div>
-        <button
-          type="button"
-          onClick={() => setPhase('menu')}
-          className="mt-10 rounded-lg bg-amber-500 hover:bg-amber-400 text-black font-semibold py-3 px-8"
-        >
+        <Button size="lg" className="mt-8 w-full" onClick={() => setPhase('menu')}>
           Play again
-        </button>
-      </div>
+        </Button>
+      </AppShell>
     )
   }
 
@@ -216,28 +237,32 @@ function App() {
   const openLabel = openPositions.length > 0 ? openPositions.join(', ') : '—'
 
   return (
-    <div className="min-h-screen flex flex-col max-w-2xl mx-auto px-4 py-6">
+    <AppShell>
       <header className="text-center mb-6">
-        <h1 className="text-2xl font-bold">82-0</h1>
-        <p className="text-sm text-[var(--color-muted)]">
-          Round {round + 1}/{ROUNDS} · Open spots:{' '}
-          <span className="text-amber-400 font-semibold">{openLabel}</span>
+        <h1 className="text-2xl font-bold tracking-tight">Better 82-0</h1>
+        <p className="text-sm text-muted-foreground mt-1">
+          Round {round + 1}/{ROUNDS} · Open:{' '}
+          <span className="text-primary font-medium">{openLabel}</span>
         </p>
+        <Badge variant="secondary" className="mt-2">
+          {mode === 'classic' ? 'Classic' : 'HoopIQ'}
+        </Badge>
       </header>
 
-      <div className="flex gap-1 mb-6">
+      <div className="grid grid-cols-5 gap-1.5 mb-6">
         {POSITIONS.map((pos, i) => {
           const filled = roster[i]
           const isOpen = filled == null
           return (
             <div
               key={pos}
-              className={`flex-1 rounded-md border py-2 text-center text-xs ${
-                isOpen ? 'border-amber-400/70 bg-amber-400/10' : 'border-[var(--color-border)]'
-              }`}
+              className={cn(
+                'rounded-lg border py-2 px-1 text-center text-xs transition-colors',
+                isOpen ? 'border-primary/60 bg-primary/10' : 'border-border bg-card/50',
+              )}
             >
-              <div className="font-bold">{pos}</div>
-              <div className="truncate px-1 text-[10px] text-[var(--color-muted)] mt-0.5">
+              <div className="font-bold text-foreground">{pos}</div>
+              <div className="truncate text-[10px] text-muted-foreground mt-0.5">
                 {filled?.player.split(' ').pop() ?? 'open'}
               </div>
             </div>
@@ -245,120 +270,120 @@ function App() {
         })}
       </div>
 
-      <section className="rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-6 text-center mb-6">
-        <p className="text-xs uppercase tracking-widest text-[var(--color-muted)] mb-3">Slot machine</p>
-        {spinning ? (
-          <p className="text-2xl font-bold animate-pulse text-amber-400">Spinning…</p>
-        ) : slot && slotColors ? (
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <span
-              className="text-3xl font-black px-4 py-2 rounded-lg"
-              style={{ backgroundColor: slotColors.bg, color: slotColors.text }}
-            >
-              {slot.team}
-            </span>
-            <span className="text-2xl font-bold text-amber-400">{slot.decadeLabel}</span>
-          </div>
-        ) : (
-          <button
-            type="button"
-            onClick={() => spinSlot()}
-            className="rounded-lg bg-amber-500 hover:bg-amber-400 text-black font-semibold py-2 px-6"
-          >
-            Spin
-          </button>
-        )}
-        {phase === 'pick' && slot && (
-          <div className="mt-4 flex justify-center gap-2 flex-wrap">
-            <button
-              type="button"
-              disabled={!teamSkipLeft}
-              onClick={skipTeam}
-              className="text-xs rounded border border-[var(--color-border)] px-3 py-1 disabled:opacity-40 hover:border-amber-400/50"
-            >
-              Skip team {teamSkipLeft ? '(1 left)' : '(used)'}
-            </button>
-            <button
-              type="button"
-              disabled={!decadeSkipLeft}
-              onClick={skipDecade}
-              className="text-xs rounded border border-[var(--color-border)] px-3 py-1 disabled:opacity-40 hover:border-amber-400/50"
-            >
-              Skip decade {decadeSkipLeft ? '(1 left)' : '(used)'}
-            </button>
-          </div>
-        )}
-      </section>
+      <Card className="mb-6">
+        <CardHeader className="text-center pb-2">
+          <CardDescription className="uppercase tracking-widest text-xs">
+            Slot machine
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="text-center pb-6">
+          {spinning ? (
+            <p className="text-2xl font-bold animate-pulse text-primary">Spinning…</p>
+          ) : slot && slotColors ? (
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Badge
+                className="text-2xl font-black px-4 py-2 h-auto border-0"
+                style={{ backgroundColor: slotColors.bg, color: slotColors.text }}
+              >
+                {slot.team}
+              </Badge>
+              <span className="text-2xl font-bold text-primary">{slot.decadeLabel}</span>
+            </div>
+          ) : (
+            <Button onClick={() => spinSlot()}>Spin</Button>
+          )}
+          {phase === 'pick' && slot && (
+            <>
+              <Separator className="my-4" />
+              <div className="flex justify-center gap-2 flex-wrap">
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  disabled={!teamSkipLeft}
+                  onClick={skipTeam}
+                >
+                  Skip team {teamSkipLeft ? '(1)' : '(used)'}
+                </Button>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  disabled={!decadeSkipLeft}
+                  onClick={skipDecade}
+                >
+                  Skip decade {decadeSkipLeft ? '(1)' : '(used)'}
+                </Button>
+              </div>
+            </>
+          )}
+        </CardContent>
+      </Card>
 
       {pendingPick && (
-        <section className="mb-4 rounded-xl border border-amber-400/50 bg-amber-400/5 p-4">
-          <p className="text-sm font-semibold text-center mb-3">
-            Assign <span className="text-amber-400">{pendingPick.player}</span> to:
-          </p>
-          <div className="flex justify-center gap-2 flex-wrap">
-            {pendingSlots.map(({ position, index }) => (
-              <button
-                key={position}
-                type="button"
-                onClick={() => assignPlayer(pendingPick, index)}
-                className="rounded-lg bg-amber-500 hover:bg-amber-400 text-black font-bold px-4 py-2"
-              >
-                {position}
-              </button>
-            ))}
-            <button
-              type="button"
-              onClick={() => setPendingPick(null)}
-              className="rounded-lg border border-[var(--color-border)] px-4 py-2 text-sm text-[var(--color-muted)]"
-            >
-              Cancel
-            </button>
-          </div>
-        </section>
+        <Card className="mb-4 border-primary/40 bg-primary/5">
+          <CardContent className="pt-6 pb-6">
+            <p className="text-sm font-semibold text-center mb-4">
+              Assign <span className="text-primary">{pendingPick.player}</span> to:
+            </p>
+            <div className="flex justify-center gap-2 flex-wrap">
+              {pendingSlots.map(({ position, index }) => (
+                <Button key={position} onClick={() => assignPlayer(pendingPick, index)}>
+                  {position}
+                </Button>
+              ))}
+              <Button variant="ghost" onClick={() => setPendingPick(null)}>
+                Cancel
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
       )}
 
       {phase === 'pick' && !pendingPick && (
-        <section className="flex-1 min-h-0">
+        <section className="flex-1 min-h-0 flex flex-col">
           <PositionFilter
             value={positionFilter}
             onChange={setPositionFilter}
             openPositions={openPositions}
           />
-          <p className="text-sm text-[var(--color-muted)] mb-3">
-            {pool.length} player{pool.length === 1 ? '' : 's'} from {slot?.team} ({slot?.decadeLabel})
-            {positionFilter !== 'ALL' ? ` · ${positionFilter} only` : ''}
+          <p className="text-sm text-muted-foreground mb-3">
+            {pool.length} player{pool.length === 1 ? '' : 's'} · {slot?.team} ({slot?.decadeLabel})
+            {positionFilter !== 'ALL' ? ` · ${positionFilter}` : ''}
             {mode === 'hoopiq' ? ' · A–Z' : ' · by strength'}
           </p>
           {pool.length === 0 ? (
-            <p className="text-center text-amber-400 py-8">
+            <p className="text-center text-primary py-8 text-sm">
               {positionFilter !== 'ALL'
-                ? `No one on this team/era matches ${positionFilter} and an open spot. Try another filter or a skip.`
-                : 'No one on this team/era can fill your open positions. Try a skip.'}
+                ? `No matches for ${positionFilter}. Try another filter or a skip.`
+                : 'No eligible players. Try a skip.'}
             </p>
           ) : (
-            <ul className="space-y-2 max-h-[50vh] overflow-y-auto pr-1">
-              {pool.map((p) => {
-                const eligible = getEligibleSlots(p, roster).map((s) => s.position)
-                return (
-                  <li key={p.id}>
-                    <PlayerCard
-                      player={p}
-                      mode={mode}
-                      eligiblePositions={eligible}
-                      onSelect={() => onChoosePlayer(p)}
-                    />
-                  </li>
-                )
-              })}
-            </ul>
+            <ScrollArea className="max-h-[50vh] flex-1">
+              <ul className="space-y-2 pr-2">
+                {pool.map((p) => {
+                  const eligible = getEligibleSlots(p, roster).map((s) => s.position)
+                  return (
+                    <li key={p.id}>
+                      <PlayerCard
+                        player={p}
+                        mode={mode}
+                        eligiblePositions={eligible}
+                        onSelect={() => onChoosePlayer(p)}
+                      />
+                    </li>
+                  )
+                })}
+              </ul>
+            </ScrollArea>
           )}
         </section>
       )}
 
       {phase === 'spin' && !spinning && !slot && (
-        <p className="text-center text-[var(--color-muted)]">Press Spin to start this round.</p>
+        <p className="text-center text-muted-foreground text-sm">Press Spin to start this round.</p>
       )}
-    </div>
+    </AppShell>
   )
 }
 
