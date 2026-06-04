@@ -1,0 +1,23 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-background: #0a0e17;
+  --color-card: #121a2a;
+  --color-border: #2a3548;
+  --color-muted: #8b9cb3;
+  --color-accent: #f59e0b;
+  --color-accent-dim: #d97706;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(180deg, var(--color-background) 0%, var(--color-card) 50%, var(--color-background) 100%);
+  color: #e8edf5;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}

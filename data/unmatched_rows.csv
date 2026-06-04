@@ -1,0 +1,332 @@
+team,player,pos,ppg,rpg,apg,spg,bpg,positions,id,baseSlug,era,reason
+ATL,Dave Newmark,C,4.9,2.7,0.7,,,['C'],dave_newmark_atl_1970s,dave_newmark,1970s,no_bbref_match
+ATL,Don Ohl,SG,6.2,1.1,1.5,,,"['PG', 'SG']",don_ohl_atl_1970s,don_ohl,1970s,no_bbref_match
+ATL,Eddie Mast,PF,2.8,3.2,0.9,,,['PF'],eddie_mast_atl_1970s,eddie_mast,1970s,no_bbref_match
+ATL,Gary Gregor,SF,8.1,4.9,0.8,,,"['PF', 'SF']",gary_gregor_atl_1970s,gary_gregor,1970s,no_bbref_match
+ATL,Herb White,PG,2.4,1.3,1.2,,,['PG'],herb_white_atl_1970s,herb_white,1970s,no_bbref_match
+ATL,Jeff Halliburton,SG,4.39,1.04,0.78,,,['SG'],jeff_halliburton_atl_1970s,jeff_halliburton,1970s,no_bbref_match
+ATL,Jerry Chambers,SF,8.9,3.8,0.9,,,['SF'],jerry_chambers_atl_1970s,jerry_chambers,1970s,no_bbref_match
+ATL,Joe Caldwell,SG,21.1,5.0,3.5,,,"['SF', 'SG']",joe_caldwell_atl_1970s,joe_caldwell,1970s,no_bbref_match
+ATL,John Vallely,SG,4.03,0.77,0.91,,,['SG'],john_vallely_atl_1970s,john_vallely,1970s,no_bbref_match
+ATL,Larry Siegfried,PG,3.3,1.5,2.5,,,"['PG', 'SG']",larry_siegfried_atl_1970s,larry_siegfried,1970s,no_bbref_match
+ATL,Len Chappell,PF,4.8,3.2,0.4,,,"['C', 'PF', 'SF']",len_chappell_atl_1970s,len_chappell,1970s,no_bbref_match
+ATL,Jack Givens,SF,5.7,3.0,0.7,0.6,0.2,['SF'],jack_givens_atl_1980s,jack_givens,1980s,no_bbref_match
+ATL,John Brown,SF,3.9,2.2,0.5,0.1,0.1,"['PF', 'SF']",john_brown_atl_1980s,john_brown,1980s,no_bbref_match
+ATL,Terry Furlow,SG,8.4,2.0,3.4,0.9,0.4,['SG'],terry_furlow_atl_1980s,terry_furlow,1980s,no_bbref_match
+ATL,Randolph Morris,PF,2.2,1.4,0.1,0.2,0.1,"['C', 'PF']",randolph_morris_atl_2010s,randolph_morris,2010s,no_bbref_match
+BKN,Purvis Short,SF,13.1,3.0,1.8,0.8,0.2,"['PF', 'SF', 'SG']",purvis_short_bkn_1990s,purvis_short,1990s,no_bbref_match
+BKN,Gheorghe Mureșan,C,3.5,2.3,0.3,0.0,0.4,['C'],gheorghe_mure_an_bkn_2000s,gheorghe_mure_an,2000s,no_bbref_match
+BKN,Michael Cage,C,1.4,4.1,0.5,0.4,0.4,"['C', 'PF']",michael_cage_bkn_2000s,michael_cage,2000s,no_bbref_match
+BKN,Jarvis Hayes,SF,7.8,2.4,0.9,0.6,0.2,"['SF', 'SG']",jarvis_hayes_bkn_2010s,jarvis_hayes,2010s,no_bbref_match
+BKN,Josh Boone,PF,4.0,5.0,0.5,0.5,0.8,"['C', 'PF']",josh_boone_bkn_2010s,josh_boone,2010s,no_bbref_match
+BKN,Rafer Alston,PG,9.7,2.8,3.9,1.0,0.2,['PG'],rafer_alston_bkn_2010s,rafer_alston,2010s,no_bbref_match
+BKN,Trenton Hassell,SF,4.5,2.9,1.0,0.3,0.2,"['SF', 'SG']",trenton_hassell_bkn_2010s,trenton_hassell,2010s,no_bbref_match
+BOS,Bailey Howell,PF,12.6,6.7,1.5,,,"['PF', 'SF']",bailey_howell_bos_1970s,bailey_howell,1970s,no_bbref_match
+BOS,Bill Dinwiddie,PF,4.9,3.4,0.6,,,"['PF', 'SF']",bill_dinwiddie_bos_1970s,bill_dinwiddie,1970s,no_bbref_match
+BOS,Em Bryant,PG,7.8,3.8,3.3,,,['PG'],em_bryant_bos_1970s,em_bryant,1970s,no_bbref_match
+BOS,Garfield Smith,PF,2.69,2.1,0.24,,,"['C', 'PF']",garfield_smith_bos_1970s,garfield_smith,1970s,no_bbref_match
+BOS,Jim Barnes,PF,5.9,4.5,0.7,,,"['C', 'PF']",jim_barnes_bos_1970s,jim_barnes,1970s,no_bbref_match
+BOS,Larry Siegfried,PG,12.6,2.7,3.8,,,"['PG', 'SG']",larry_siegfried_bos_1970s,larry_siegfried,1970s,no_bbref_match
+BOS,Rex Morgan,SG,2.77,1.48,0.6,,,['SG'],rex_morgan_bos_1970s,rex_morgan,1970s,no_bbref_match
+BOS,Rich Johnson,C,5.83,3.23,0.49,,,['C'],rich_johnson_bos_1970s,rich_johnson,1970s,no_bbref_match
+BOS,Tom Sanders,SF,6.3,3.59,1.07,,,"['PF', 'SF']",tom_sanders_bos_1970s,tom_sanders,1970s,no_bbref_match
+BOS,Don Chaney,SG,2.8,1.2,0.6,0.5,0.2,['SG'],don_chaney_bos_1980s,don_chaney,1980s,no_bbref_match
+BOS,Pete Maravich,SG,11.5,1.5,1.1,0.3,0.1,['SG'],pete_maravich_bos_1980s,pete_maravich,1980s,no_bbref_match
+BOS,Dennis Johnson,PG,7.1,2.7,6.5,1.1,0.2,"['PG', 'SG']",dennis_johnson_bos_1990s,dennis_johnson,1990s,no_bbref_match
+BOS,Jim Paxson,PG,6.4,1.1,1.9,0.5,0.1,"['PG', 'SF', 'SG']",jim_paxson_bos_1990s,jim_paxson,1990s,no_bbref_match
+BOS,J.R. Giddens,SF,1.1,1.0,0.3,0.2,0.0,['SF'],jr_giddens_bos_2010s,jr_giddens,2010s,no_bbref_match
+BOS,Michael Finley,SF,5.2,1.6,1.1,0.2,0.1,"['SF', 'SG']",michael_finley_bos_2010s,michael_finley,2010s,no_bbref_match
+CHA,Brian Rowsom,PF,5.1,3.0,0.5,0.4,0.3,['PF'],brian_rowsom_cha_1990s,brian_rowsom,1990s,no_bbref_match
+CHA,Jerry Sichting,PG,3.5,0.6,2.7,0.5,0.1,['PG'],jerry_sichting_cha_1990s,jerry_sichting,1990s,no_bbref_match
+CHA,Richard Anderson,PF,4.3,2.4,1.0,0.4,0.2,"['C', 'PF']",richard_anderson_cha_1990s,richard_anderson,1990s,no_bbref_match
+CHA,Bobby Phills,SG,13.6,2.5,2.8,1.5,0.3,['SG'],bobby_phills_cha_2000s,bobby_phills,2000s,no_bbref_match
+CHA,Dale Ellis,SG,2.3,0.9,0.3,0.3,0.0,"['SF', 'SG']",dale_ellis_cha_2000s,dale_ellis,2000s,no_bbref_match
+CHA,Ronald Murray,SG,9.9,2.1,1.8,0.6,0.3,"['PG', 'SG']",ronald_murray_cha_2010s,ronald_murray,2010s,no_bbref_match
+CHI,Al Tucker,PF,7.0,3.4,0.9,,,['PF'],al_tucker_chi_1970s,al_tucker,1970s,no_bbref_match
+CHI,Ed Manning,PF,5.6,5.2,0.9,,,"['PF', 'SF']",ed_manning_chi_1970s,ed_manning,1970s,no_bbref_match
+CHI,Jim King,SG,4.94,1.16,1.33,,,"['PG', 'SG']",jim_king_chi_1970s,jim_king,1970s,no_bbref_match
+CHI,Jimmy Collins,SG,3.82,0.9,0.95,,,['SG'],jimmy_collins_chi_1970s,jimmy_collins,1970s,no_bbref_match
+CHI,Johnny Baum,SF,4.48,1.97,0.48,,,['SF'],johnny_baum_chi_1970s,johnny_baum,1970s,no_bbref_match
+CHI,Loy Petersen,SG,3.0,0.8,0.7,,,['SG'],loy_petersen_chi_1970s,loy_petersen,1970s,no_bbref_match
+CHI,Shaler Halimon,SF,6.04,1.76,1.81,,,"['SF', 'SG']",shaler_halimon_chi_1970s,shaler_halimon,1970s,no_bbref_match
+CHI,Del Beshore,PG,3.6,0.9,2.0,0.9,0.1,['PG'],del_beshore_chi_1980s,del_beshore,1980s,no_bbref_match
+CHI,Sam Smith,SF,8.6,1.8,1.4,0.8,0.2,['SF'],sam_smith_chi_1980s,sam_smith,1980s,no_bbref_match
+CHI,Charles Davis,SF,2.5,1.5,0.3,0.2,0.2,['SF'],charles_davis_chi_1990s,charles_davis,1990s,no_bbref_match
+CHI,B.J. Armstrong,PG,7.4,1.7,2.9,0.3,0.0,['PG'],bj_armstrong_chi_2000s,bj_armstrong,2000s,no_bbref_match
+CHI,Chris Anstey,C,6.0,3.8,0.9,0.4,0.3,['C'],chris_anstey_chi_2000s,chris_anstey,2000s,no_bbref_match
+CHI,Ronald Murray,SG,10.1,2.9,1.8,0.6,0.1,"['PG', 'SG']",ronald_murray_chi_2010s,ronald_murray,2010s,no_bbref_match
+CLE,Bobby Lewis,SG,5.9,2.6,3.1,,,['SG'],bobby_lewis_cle_1970s,bobby_lewis,1970s,no_bbref_match
+CLE,Bobby Washington,PG,6.03,2.02,3.52,,,['PG'],bobby_washington_cle_1970s,bobby_washington,1970s,no_bbref_match
+CLE,Cliff Anderson,SG,3.4,1.6,0.7,,,['SG'],cliff_anderson_cle_1970s,cliff_anderson,1970s,no_bbref_match
+CLE,Dave Sorenson,PF,8.8,5.04,1.54,,,['PF'],dave_sorenson_cle_1970s,dave_sorenson,1970s,no_bbref_match
+CLE,Gary Suiter,UNK,1.4,1.4,0.1,,,[],gary_suiter_cle_1970s,gary_suiter,1970s,no_bbref_match
+CLE,Greg Howard,PF,2.9,2.3,0.6,,,['PF'],greg_howard_cle_1970s,greg_howard,1970s,no_bbref_match
+CLE,Jackie Ridgle,SG,1.8,0.5,0.2,,,['SG'],jackie_ridgle_cle_1970s,jackie_ridgle,1970s,no_bbref_match
+CLE,Joe Cooke,SG,4.3,1.6,1.3,,,['SG'],joe_cooke_cle_1970s,joe_cooke,1970s,no_bbref_match
+CLE,Johnny Egan,PG,4.0,1.2,2.2,,,['PG'],johnny_egan_cle_1970s,johnny_egan,1970s,no_bbref_match
+CLE,Larry Mikan,SF,3.0,2.6,0.8,,,['SF'],larry_mikan_cle_1970s,larry_mikan,1970s,no_bbref_match
+CLE,McCoy McLemore,SF,11.7,8.0,3.0,,,['SF'],mccoy_mclemore_cle_1970s,mccoy_mclemore,1970s,no_bbref_match
+CLE,Earl Tatum,SG,2.6,0.8,0.6,0.5,0.2,['SG'],earl_tatum_cle_1980s,earl_tatum,1980s,no_bbref_match
+CLE,Willie Smith,PG,4.8,2.0,4.2,1.2,0.0,['PG'],willie_smith_cle_1980s,willie_smith,1980s,no_bbref_match
+CLE,Ryan Stack,PF,2.1,1.8,0.2,0.2,0.4,['PF'],ryan_stack_cle_2000s,ryan_stack,2000s,no_bbref_match
+DAL,Anthony Jones,SG,3.0,1.2,0.4,0.5,0.2,"['SF', 'SG']",anthony_jones_dal_1990s,anthony_jones,1990s,no_bbref_match
+DEN,Bo Ellis,PF,3.4,2.4,0.6,0.2,0.5,['PF'],bo_ellis_den_1980s,bo_ellis,1980s,no_bbref_match
+DEN,Charlie Scott,SG,9.3,2.4,3.6,0.7,0.3,"['PG', 'SG']",charlie_scott_den_1980s,charlie_scott,1980s,no_bbref_match
+DEN,Gary Garland,PG,4.3,1.8,1.9,0.7,0.1,['PG'],gary_garland_den_1980s,gary_garland,1980s,no_bbref_match
+DEN,Bill Hanzlik,PF,6.2,2.6,2.3,1.0,0.4,"['PF', 'SF']",bill_hanzlik_den_1990s,bill_hanzlik,1990s,no_bbref_match
+DEN,Eddie Hughes,PG,3.5,1.2,1.9,0.8,0.0,['PG'],eddie_hughes_den_1990s,eddie_hughes,1990s,no_bbref_match
+DEN,Roy Rogers,PF,2.2,2.0,0.2,0.1,1.0,['PF'],roy_rogers_den_2000s,roy_rogers,2000s,no_bbref_match
+DET,Bob Quick,SF,7.47,3.68,0.84,,,['SF'],bob_quick_det_1970s,bob_quick,1970s,no_bbref_match
+DET,Eddie Miles,SG,13.5,3.9,1.9,,,"['PG', 'SG']",eddie_miles_det_1970s,eddie_miles,1970s,no_bbref_match
+DET,Erwin Mueller,PF,6.76,4.51,2.01,,,"['C', 'PF']",erwin_mueller_det_1970s,erwin_mueller,1970s,no_bbref_match
+DET,Harvey Marlatt,SG,3.67,1.4,1.52,,,['SG'],harvey_marlatt_det_1970s,harvey_marlatt,1970s,no_bbref_match
+DET,Isaiah Wilson,SG,3.5,1.0,0.9,,,['SG'],isaiah_wilson_det_1970s,isaiah_wilson,1970s,no_bbref_match
+DET,McCoy McLemore,SF,8.0,4.6,1.1,,,['SF'],mccoy_mclemore_det_1970s,mccoy_mclemore,1970s,no_bbref_match
+DET,Paul Long,SG,3.3,0.4,0.7,,,['SG'],paul_long_det_1970s,paul_long,1970s,no_bbref_match
+DET,Terry Dischinger,SF,10.8,4.77,1.42,,,"['SF', 'SG']",terry_dischinger_det_1970s,terry_dischinger,1970s,no_bbref_match
+DET,Earl Evans,PF,4.4,2.1,1.0,0.4,0.0,['PF'],earl_evans_det_1980s,earl_evans,1980s,no_bbref_match
+DET,Eric Money,PG,10.9,1.8,4.3,1.0,0.2,"['PG', 'SG']",eric_money_det_1980s,eric_money,1980s,no_bbref_match
+DET,Chucky Atkins,PG,4.0,0.7,2.3,0.4,0.0,"['PG', 'SG']",chucky_atkins_det_2010s,chucky_atkins,2010s,no_bbref_match
+GSW,Adrian Smith,SG,6.05,1.1,1.74,,,['SG'],adrian_smith_gsw_1970s,adrian_smith,1970s,no_bbref_match
+GSW,Al Attles,PG,3.77,1.43,2.55,,,['PG'],al_attles_gsw_1970s,al_attles,1970s,no_bbref_match
+GSW,Bill Turner,PF,3.23,2.24,0.4,,,"['PF', 'SF']",bill_turner_gsw_1970s,bill_turner,1970s,no_bbref_match
+GSW,Bob Portman,SF,5.66,3.29,0.58,,,"['SF', 'SG']",bob_portman_gsw_1970s,bob_portman,1970s,no_bbref_match
+GSW,Bobby Lewis,SG,7.2,2.2,2.7,,,['SG'],bobby_lewis_gsw_1970s,bobby_lewis,1970s,no_bbref_match
+GSW,Dave Gambee,SF,7.2,3.3,0.8,,,"['PF', 'SF']",dave_gambee_gsw_1970s,dave_gambee,1970s,no_bbref_match
+GSW,Levi Fontaine,SG,3.8,0.4,0.6,,,['SG'],levi_fontaine_gsw_1970s,levi_fontaine,1970s,no_bbref_match
+GSW,Nick Jones,SG,5.3,1.04,1.09,,,"['PG', 'SG']",nick_jones_gsw_1970s,nick_jones,1970s,no_bbref_match
+GSW,Odis Allison,SF,1.9,1.3,0.3,,,['SF'],odis_allison_gsw_1970s,odis_allison,1970s,no_bbref_match
+GSW,Ralph Ogden,UNK,1.3,1.0,0.3,,,[],ralph_ogden_gsw_1970s,ralph_ogden,1970s,no_bbref_match
+GSW,Vic Bartolome,C,0.9,1.6,0.1,,,['C'],vic_bartolome_gsw_1970s,vic_bartolome,1970s,no_bbref_match
+GSW,Darnell Hillman,PF,4.0,3.7,1.0,0.4,0.5,"['C', 'PF']",darnell_hillman_gsw_1980s,darnell_hillman,1980s,no_bbref_match
+GSW,Uwe Blab,C,2.1,2.5,0.6,0.0,0.6,['C'],uwe_blab_gsw_1990s,uwe_blab,1990s,no_bbref_match
+GSW,Mark Davis,SF,6.2,3.7,1.7,1.1,0.2,['SF'],mark_davis_gsw_2000s,mark_davis,2000s,no_bbref_match
+GSW,Terry Cummings,PF,8.4,4.9,1.0,0.6,0.4,"['PF', 'SF']",terry_cummings_gsw_2000s,terry_cummings,2000s,no_bbref_match
+GSW,Tim Legler,SG,3.3,1.0,1.0,0.2,0.0,['SG'],tim_legler_gsw_2000s,tim_legler,2000s,no_bbref_match
+GSW,Tony Farmer,PF,6.3,4.0,1.0,0.9,0.2,"['C', 'PF']",tony_farmer_gsw_2000s,tony_farmer,2000s,no_bbref_match
+GSW,Chris Hunter,C,4.5,2.8,0.6,0.2,0.6,['C'],chris_hunter_gsw_2010s,chris_hunter,2010s,no_bbref_match
+GSW,Devean George,SF,5.4,2.5,0.7,0.9,0.2,['SF'],devean_george_gsw_2010s,devean_george,2010s,no_bbref_match
+HOU,Bernie Williams,SG,6.94,1.89,2.17,,,['SG'],bernie_williams_hou_1970s,bernie_williams,1970s,no_bbref_match
+HOU,Eric McWilliams,PF,2.0,1.4,0.1,,,['PF'],eric_mcwilliams_hou_1970s,eric_mcwilliams,1970s,no_bbref_match
+HOU,John Trapp,SF,8.08,5.37,1.24,,,['SF'],john_trapp_hou_1970s,john_trapp,1970s,no_bbref_match
+HOU,John Vallely,SG,2.9,0.5,0.7,,,['SG'],john_vallely_hou_1970s,john_vallely,1970s,no_bbref_match
+HOU,Johnny Egan,PG,2.46,0.8,1.4,,,['PG'],johnny_egan_hou_1970s,johnny_egan,1970s,no_bbref_match
+HOU,Larry Siegfried,PG,7.49,3.44,5.79,,,"['PG', 'SG']",larry_siegfried_hou_1970s,larry_siegfried,1970s,no_bbref_match
+HOU,Alonzo Bradley,SF,1.9,0.3,0.1,0.1,0.0,['SF'],alonzo_bradley_hou_1980s,alonzo_bradley,1980s,no_bbref_match
+HOU,Rick Barry,SF,12.0,3.3,3.7,1.1,0.4,['SF'],rick_barry_hou_1980s,rick_barry,1980s,no_bbref_match
+HOU,John Lucas,PG,5.8,1.8,4.9,0.9,0.0,"['PG', 'SG']",john_lucas_hou_1990s,john_lucas,1990s,no_bbref_match
+HOU,Charles Barkley,PF,14.5,10.5,3.2,0.7,0.2,"['PF', 'SF']",charles_barkley_hou_2000s,charles_barkley,2000s,no_bbref_match
+HOU,Thomas Hamilton,C,3.7,4.1,0.7,0.2,0.6,['C'],thomas_hamilton_hou_2000s,thomas_hamilton,2000s,no_bbref_match
+IND,John Kuester,PG,1.2,0.6,0.7,0.3,0.0,['PG'],john_kuester_ind_1980s,john_kuester,1980s,no_bbref_match
+IND,Rik Smits,C,12.9,5.1,1.1,0.3,1.3,['C'],rik_smits_ind_2000s,rik_smits,2000s,no_bbref_match
+LAC,Bill Hosket,PF,5.71,3.48,1.04,,,['PF'],bill_hosket_lac_1970s,bill_hosket,1970s,no_bbref_match
+LAC,Em Bryant,PG,7.92,3.09,4.37,,,['PG'],em_bryant_lac_1970s,em_bryant,1970s,no_bbref_match
+LAC,Fred Hilton,SG,9.44,2.16,1.6,,,['SG'],fred_hilton_lac_1970s,fred_hilton,1970s,no_bbref_match
+LAC,George Wilson,PF,5.2,5.0,1.0,,,"['C', 'PF']",george_wilson_lac_1970s,george_wilson,1970s,no_bbref_match
+LAC,Jerry Chambers,SF,6.8,2.6,0.9,,,['SF'],jerry_chambers_lac_1970s,jerry_chambers,1970s,no_bbref_match
+LAC,Mike Davis,PF,10.34,2.28,1.73,,,"['PF', 'SG']",mike_davis_lac_1970s,mike_davis,1970s,no_bbref_match
+LAC,Mike Silliman,SF,2.5,1.7,0.6,,,['SF'],mike_silliman_lac_1970s,mike_silliman,1970s,no_bbref_match
+LAC,Nate Bowman,C,3.1,3.9,0.9,,,['C'],nate_bowman_lac_1970s,nate_bowman,1970s,no_bbref_match
+LAC,Paul Long,SG,4.5,1.0,0.8,,,['SG'],paul_long_lac_1970s,paul_long,1970s,no_bbref_match
+LAC,Bingo Smith,SG,11.7,3.5,1.3,0.8,0.2,"['SF', 'SG']",bingo_smith_lac_1980s,bingo_smith,1980s,no_bbref_match
+LAC,Marvin Barnes,PF,3.2,3.9,0.9,0.3,0.6,['PF'],marvin_barnes_lac_1980s,marvin_barnes,1980s,no_bbref_match
+LAC,Nick Weatherspoon,SF,6.9,3.6,0.9,0.6,0.3,['SF'],nick_weatherspoon_lac_1980s,nick_weatherspoon,1980s,no_bbref_match
+LAC,Steve Malovic,PF,1.9,2.1,0.4,0.2,0.0,['PF'],steve_malovic_lac_1980s,steve_malovic,1980s,no_bbref_match
+LAC,Michael Young,SF,4.9,1.9,0.5,0.6,0.1,['SF'],michael_young_lac_1990s,michael_young,1990s,no_bbref_match
+LAC,Anthony Avent,PF,1.7,1.5,0.2,0.3,0.3,['PF'],anthony_avent_lac_2000s,anthony_avent,2000s,no_bbref_match
+LAC,Charles Jones,PG,3.4,1.1,1.7,0.5,0.1,"['C', 'PF', 'PG', 'SG']",charles_jones_lac_2000s,charles_jones,2000s,no_bbref_match
+LAC,Eric Murdock,PG,5.6,1.9,2.7,1.2,0.1,['PG'],eric_murdock_lac_2000s,eric_murdock,2000s,no_bbref_match
+LAC,Keith Closs,C,4.2,3.1,0.4,0.2,1.3,['C'],keith_closs_lac_2000s,keith_closs,2000s,no_bbref_match
+LAC,Pete Chilcutt,PF,3.0,3.3,0.7,0.4,0.3,['PF'],pete_chilcutt_lac_2000s,pete_chilcutt,2000s,no_bbref_match
+LAC,Mardy Collins,SG,2.6,1.2,1.0,0.5,0.0,"['PG', 'SF', 'SG']",mardy_collins_lac_2010s,mardy_collins,2010s,no_bbref_match
+LAC,Ricky Davis,SF,4.4,1.6,1.1,0.3,0.1,"['SF', 'SG']",ricky_davis_lac_2010s,ricky_davis,2010s,no_bbref_match
+LAL,Elgin Baylor,SF,21.88,9.68,4.79,,,['SF'],elgin_baylor_lal_1970s,elgin_baylor,1970s,no_bbref_match
+LAL,Flynn Robinson,SG,9.54,1.75,2.12,,,"['PG', 'SG']",flynn_robinson_lal_1970s,flynn_robinson,1970s,no_bbref_match
+LAL,Fred Hetzel,SF,4.8,2.5,0.6,,,"['PF', 'SF']",fred_hetzel_lal_1970s,fred_hetzel,1970s,no_bbref_match
+LAL,John Trapp,SF,5.45,3.08,0.68,,,['SF'],john_trapp_lal_1970s,john_trapp,1970s,no_bbref_match
+LAL,John Tresvant,PF,5.76,3.11,1.01,,,['PF'],john_tresvant_lal_1970s,john_tresvant,1970s,no_bbref_match
+LAL,Johnny Egan,PG,7.3,1.4,3.0,,,['PG'],johnny_egan_lal_1970s,johnny_egan,1970s,no_bbref_match
+LAL,Mike Lynn,SF,2.7,1.5,0.7,,,['SF'],mike_lynn_lal_1970s,mike_lynn,1970s,no_bbref_match
+LAL,Willie McCarter,SG,7.31,1.77,1.91,,,['SG'],willie_mccarter_lal_1970s,willie_mccarter,1970s,no_bbref_match
+LAL,Wilt Chamberlain,C,16.75,18.65,4.26,,,['C'],wilt_chamberlain_lal_1970s,wilt_chamberlain,1970s,no_bbref_match
+LAL,Jay Vincent,SF,3.8,1.1,0.4,0.3,0.1,"['PF', 'SF']",jay_vincent_lal_1990s,jay_vincent,1990s,no_bbref_match
+LAL,Michael Cooper,SG,6.4,2.8,2.7,0.8,0.5,['SG'],michael_cooper_lal_1990s,michael_cooper,1990s,no_bbref_match
+LAL,John Salley,C,1.6,1.4,0.6,0.2,0.3,"['C', 'PF']",john_salley_lal_2000s,john_salley,2000s,no_bbref_match
+LAL,Adam Morrison,SF,2.4,1.0,0.6,0.1,0.1,"['PF', 'SF']",adam_morrison_lal_2010s,adam_morrison,2010s,no_bbref_match
+MEM,Antoine Carr,SF,3.2,1.5,0.3,0.1,0.3,"['C', 'PF', 'SF']",antoine_carr_mem_2000s,antoine_carr,2000s,no_bbref_match
+MEM,Dennis Scott,SF,5.6,1.6,1.0,0.4,0.1,"['SF', 'SG']",dennis_scott_mem_2000s,dennis_scott,2000s,no_bbref_match
+MEM,Marcus Williams,PG,4.3,1.5,2.6,0.5,0.0,"['PF', 'PG', 'SF']",marcus_williams_mem_2010s,marcus_williams,2010s,no_bbref_match
+MEM,Steven Hunter,C,2.5,2.0,0.0,0.0,0.5,"['C', 'PF']",steven_hunter_mem_2010s,steven_hunter,2010s,no_bbref_match
+MIA,Rex Walters,PG,2.8,1.1,2.0,0.2,0.0,"['PG', 'SG']",rex_walters_mia_2000s,rex_walters,2000s,no_bbref_match
+MIA,Rafer Alston,PG,6.6,2.2,2.9,0.9,0.2,['PG'],rafer_alston_mia_2010s,rafer_alston,2010s,no_bbref_match
+MIL,Bill Dinwiddie,PF,1.6,1.4,0.4,,,"['PF', 'SF']",bill_dinwiddie_mil_1970s,bill_dinwiddie,1970s,no_bbref_match
+MIL,Bill Zopf,PG,2.2,0.9,1.4,,,['PG'],bill_zopf_mil_1970s,bill_zopf,1970s,no_bbref_match
+MIL,Bob Boozer,PF,9.1,5.4,1.6,,,"['PF', 'SF']",bob_boozer_mil_1970s,bob_boozer,1970s,no_bbref_match
+MIL,Bob Greacen,SF,2.6,1.47,0.97,,,['SF'],bob_greacen_mil_1970s,bob_greacen,1970s,no_bbref_match
+MIL,Flynn Robinson,SG,21.8,3.2,5.5,,,"['PG', 'SG']",flynn_robinson_mil_1970s,flynn_robinson,1970s,no_bbref_match
+MIL,Freddie Crawford,SG,7.6,2.4,2.9,,,['SG'],freddie_crawford_mil_1970s,freddie_crawford,1970s,no_bbref_match
+MIL,Gary Freeman,SF,3.7,2.4,0.8,,,['SF'],gary_freeman_mil_1970s,gary_freeman,1970s,no_bbref_match
+MIL,Guy Rodgers,PG,3.2,1.2,3.3,,,"['PG', 'SG']",guy_rodgers_mil_1970s,guy_rodgers,1970s,no_bbref_match
+MIL,Jeff Webb,SG,1.92,0.84,0.58,,,['SG'],jeff_webb_mil_1970s,jeff_webb,1970s,no_bbref_match
+MIL,Len Chappell,PF,8.3,3.7,0.7,,,"['C', 'PF', 'SF']",len_chappell_mil_1970s,len_chappell,1970s,no_bbref_match
+MIL,McCoy McLemore,SF,4.23,3.69,1.13,,,['SF'],mccoy_mclemore_mil_1970s,mccoy_mclemore,1970s,no_bbref_match
+MIL,Dave Meyers,PF,12.1,5.7,2.8,0.9,0.5,['PF'],dave_meyers_mil_1980s,dave_meyers,1980s,no_bbref_match
+MIL,Haywoode Workman,PG,2.9,0.7,1.9,0.5,0.0,['PG'],haywoode_workman_mil_2000s,haywoode_workman,2000s,no_bbref_match
+MIN,Scott Roth,SF,6.8,1.6,1.6,0.7,0.1,['SF'],scott_roth_min_1990s,scott_roth,1990s,no_bbref_match
+MIN,Sidney Lowe,PG,2.3,2.0,4.2,0.9,0.1,"['PG', 'SG']",sidney_lowe_min_1990s,sidney_lowe,1990s,no_bbref_match
+MIN,Malik Sealy,SF,11.3,4.3,2.4,0.9,0.2,"['SF', 'SG']",malik_sealy_min_2000s,malik_sealy,2000s,no_bbref_match
+MIN,Nathan Jawai,C,3.2,2.7,0.6,0.3,0.2,"['C', 'PF']",nathan_jawai_min_2010s,nathan_jawai,2010s,no_bbref_match
+MIN,Oleksiy Pecherov,C,4.5,2.8,0.3,0.2,0.3,['C'],oleksiy_pecherov_min_2010s,oleksiy_pecherov,2010s,no_bbref_match
+NOP,Devin Brown,SG,9.7,2.8,1.5,0.8,0.1,['SG'],devin_brown_nop_2010s,devin_brown,2010s,no_bbref_match
+NYK,Bill Hosket,PF,3.3,1.8,0.5,,,['PF'],bill_hosket_nyk_1970s,bill_hosket,1970s,no_bbref_match
+NYK,Charlie Paulk,PF,1.4,1.8,0.3,,,['PF'],charlie_paulk_nyk_1970s,charlie_paulk,1970s,no_bbref_match
+NYK,Eddie Mast,PF,2.34,1.84,0.21,,,['PF'],eddie_mast_nyk_1970s,eddie_mast,1970s,no_bbref_match
+NYK,Eddie Miles,SG,1.5,0.4,0.4,,,"['PG', 'SG']",eddie_miles_nyk_1970s,eddie_miles,1970s,no_bbref_match
+NYK,Greg Fillmore,C,2.38,2.22,0.38,,,['C'],greg_fillmore_nyk_1970s,greg_fillmore,1970s,no_bbref_match
+NYK,Mike Price,SG,1.66,0.55,0.28,,,['SG'],mike_price_nyk_1970s,mike_price,1970s,no_bbref_match
+NYK,Nate Bowman,C,2.9,3.2,0.6,,,['C'],nate_bowman_nyk_1970s,nate_bowman,1970s,no_bbref_match
+NYK,Earl Monroe,SG,7.4,0.7,1.3,0.4,0.1,"['PG', 'SG']",earl_monroe_nyk_1980s,earl_monroe,1980s,no_bbref_match
+NYK,Jim Cleamons,PG,3.4,0.9,1.8,0.6,0.1,['PG'],jim_cleamons_nyk_1980s,jim_cleamons,1980s,no_bbref_match
+NYK,Jonathan Bender,SF,4.7,2.1,0.6,0.1,0.7,['SF'],jonathan_bender_nyk_2010s,jonathan_bender,2010s,no_bbref_match
+OKC,Bob Boozer,PF,15.2,8.7,1.3,,,"['PF', 'SF']",bob_boozer_okc_1970s,bob_boozer,1970s,no_bbref_match
+OKC,Dorie Murrey,PF,5.5,4.4,0.9,,,"['C', 'PF']",dorie_murrey_okc_1970s,dorie_murrey,1970s,no_bbref_match
+OKC,Jake Ford,PG,4.03,0.63,1.13,,,['PG'],jake_ford_okc_1970s,jake_ford,1970s,no_bbref_match
+OKC,Joby Wright,PF,3.9,2.8,0.5,,,['PF'],joby_wright_okc_1970s,joby_wright,1970s,no_bbref_match
+OKC,John Tresvant,PF,12.6,7.4,1.9,,,['PF'],john_tresvant_okc_1970s,john_tresvant,1970s,no_bbref_match
+OKC,Pete Cross,C,5.92,8.47,1.05,,,['C'],pete_cross_okc_1970s,pete_cross,1970s,no_bbref_match
+OKC,Rod Thorn,SG,4.97,1.41,2.44,,,"['PG', 'SG']",rod_thorn_okc_1970s,rod_thorn,1970s,no_bbref_match
+OKC,Tom Black,C,5.0,4.1,0.8,,,['C'],tom_black_okc_1970s,tom_black,1970s,no_bbref_match
+OKC,Tom Meschery,PF,10.81,7.21,1.7,,,"['PF', 'SF']",tom_meschery_okc_1970s,tom_meschery,1970s,no_bbref_match
+OKC,Paul Silas,PF,3.8,5.3,0.8,0.3,0.1,['PF'],paul_silas_okc_1980s,paul_silas,1980s,no_bbref_match
+OKC,Chuck Person,SF,2.8,1.4,0.6,0.1,0.1,"['PF', 'SF']",chuck_person_okc_2000s,chuck_person,2000s,no_bbref_match
+OKC,Kevin Ollie,PG,1.8,1.0,0.8,0.4,0.0,"['PG', 'SG']",kevin_ollie_okc_2010s,kevin_ollie,2010s,no_bbref_match
+ORL,Anthony Johnson,PG,4.2,1.5,2.0,0.4,0.0,"['PG', 'SG']",anthony_johnson_orl_2010s,anthony_johnson,2010s,no_bbref_match
+PHI,Al Henry,C,3.92,3.03,0.18,,,['C'],al_henry_phi_1970s,al_henry,1970s,no_bbref_match
+PHI,Bailey Howell,PF,10.7,5.4,1.4,,,"['PF', 'SF']",bailey_howell_phi_1970s,bailey_howell,1970s,no_bbref_match
+PHI,Bud Ogden,SF,3.48,1.4,0.66,,,['SF'],bud_ogden_phi_1970s,bud_ogden,1970s,no_bbref_match
+PHI,Connie Dierking,C,5.8,4.3,1.1,,,['C'],connie_dierking_phi_1970s,connie_dierking,1970s,no_bbref_match
+PHI,Darrall Imhoff,C,13.6,9.5,2.7,,,['C'],darrall_imhoff_phi_1970s,darrall_imhoff,1970s,no_bbref_match
+PHI,Dave Sorenson,PF,5.9,3.6,0.6,,,['PF'],dave_sorenson_phi_1970s,dave_sorenson,1970s,no_bbref_match
+PHI,Fred Hetzel,SF,6.1,3.3,0.7,,,"['PF', 'SF']",fred_hetzel_phi_1970s,fred_hetzel,1970s,no_bbref_match
+PHI,Freddie Crawford,SG,5.0,1.9,1.5,,,['SG'],freddie_crawford_phi_1970s,freddie_crawford,1970s,no_bbref_match
+PHI,George Wilson,PF,5.3,4.7,0.8,,,"['C', 'PF']",george_wilson_phi_1970s,george_wilson,1970s,no_bbref_match
+PHI,Hal Greer,PG,15.84,3.98,4.31,,,"['PG', 'SG']",hal_greer_phi_1970s,hal_greer,1970s,no_bbref_match
+PHI,Jeff Halliburton,SG,9.5,2.6,2.2,,,['SG'],jeff_halliburton_phi_1970s,jeff_halliburton,1970s,no_bbref_match
+PHI,John Trapp,SF,10.7,4.8,1.2,,,['SF'],john_trapp_phi_1970s,john_trapp,1970s,no_bbref_match
+PHI,Kevin Loughery,SG,12.99,2.73,3.13,,,"['PG', 'SG']",kevin_loughery_phi_1970s,kevin_loughery,1970s,no_bbref_match
+PHI,Luke Jackson,SF,6.14,6.02,1.62,,,"['C', 'PF', 'SF']",luke_jackson_phi_1970s,luke_jackson,1970s,no_bbref_match
+PHI,Mike Price,SG,5.1,2.1,1.2,,,['SG'],mike_price_phi_1970s,mike_price,1970s,no_bbref_match
+PHI,Kurt Nimphius,C,2.4,1.6,0.2,0.1,0.5,"['C', 'PF']",kurt_nimphius_phi_1990s,kurt_nimphius,1990s,no_bbref_match
+PHI,Allen Iverson,PG,13.9,3.0,4.1,0.7,0.1,"['PG', 'SG']",allen_iverson_phi_2010s,allen_iverson,2010s,no_bbref_match
+PHX,Art Harris,SG,7.27,1.68,2.39,,,"['PG', 'SG']",art_harris_phx_1970s,art_harris,1970s,no_bbref_match
+PHX,Fred Taylor,SG,4.67,1.54,0.82,,,['SG'],fred_taylor_phx_1970s,fred_taylor,1970s,no_bbref_match
+PHX,Greg Howard,PF,3.9,2.7,0.6,,,['PF'],greg_howard_phx_1970s,greg_howard,1970s,no_bbref_match
+PHX,Gus Johnson,PF,7.8,6.5,1.5,,,"['PF', 'SF']",gus_johnson_phx_1970s,gus_johnson,1970s,no_bbref_match
+PHX,Jeff Webb,SG,2.5,0.6,0.6,,,['SG'],jeff_webb_phx_1970s,jeff_webb,1970s,no_bbref_match
+PHX,Jerry Chambers,SF,8.3,2.8,0.7,,,['SF'],jerry_chambers_phx_1970s,jerry_chambers,1970s,no_bbref_match
+PHX,Joe Thomas,SF,1.4,1.1,0.4,,,['SF'],joe_thomas_phx_1970s,joe_thomas,1970s,no_bbref_match
+PHX,Neil Johnson,PF,1.7,1.7,0.4,,,['PF'],neil_johnson_phx_1970s,neil_johnson,1970s,no_bbref_match
+PHX,Mike Morrison,SG,2.0,0.6,0.3,0.1,0.0,['SG'],mike_morrison_phx_1990s,mike_morrison,1990s,no_bbref_match
+PHX,Mark West,C,0.7,1.4,0.1,0.1,0.2,['C'],mark_west_phx_2000s,mark_west,2000s,no_bbref_match
+PHX,Rex Chapman,SG,6.6,1.5,1.2,0.4,0.0,"['PG', 'SG']",rex_chapman_phx_2000s,rex_chapman,2000s,no_bbref_match
+PHX,Toby Bailey,SG,3.5,1.6,0.7,0.3,0.1,['SG'],toby_bailey_phx_2000s,toby_bailey,2000s,no_bbref_match
+POR,Charlie Yelverton,SG,7.9,2.9,1.2,,,['SG'],charlie_yelverton_por_1970s,charlie_yelverton,1970s,no_bbref_match
+POR,Darrall Imhoff,C,2.6,2.7,1.3,,,['C'],darrall_imhoff_por_1970s,darrall_imhoff,1970s,no_bbref_match
+POR,Ed Manning,PF,7.1,5.2,1.4,,,"['PF', 'SF']",ed_manning_por_1970s,ed_manning,1970s,no_bbref_match
+POR,Gary Gregor,SF,10.58,7.34,2.13,,,"['PF', 'SF']",gary_gregor_por_1970s,gary_gregor,1970s,no_bbref_match
+POR,Jim Marsh,SF,3.1,2.2,0.8,,,['SF'],jim_marsh_por_1970s,jim_marsh,1970s,no_bbref_match
+POR,Ron Knight,SF,4.69,2.81,0.85,,,"['PF', 'SF']",ron_knight_por_1970s,ron_knight,1970s,no_bbref_match
+POR,Shaler Halimon,SF,8.9,5.3,2.7,,,"['SF', 'SG']",shaler_halimon_por_1970s,shaler_halimon,1970s,no_bbref_match
+POR,Terry Dischinger,SF,6.1,3.0,1.6,,,"['SF', 'SG']",terry_dischinger_por_1970s,terry_dischinger,1970s,no_bbref_match
+POR,William Smith,C,6.86,4.74,0.69,,,['C'],william_smith_por_1970s,william_smith,1970s,no_bbref_match
+POR,Willie McCarter,SG,6.2,1.1,2.2,,,['SG'],willie_mccarter_por_1970s,willie_mccarter,1970s,no_bbref_match
+POR,Dave Twardzik,PG,8.5,2.3,4.1,1.1,0.0,['PG'],dave_twardzik_por_1980s,dave_twardzik,1980s,no_bbref_match
+SAC,Adrian Smith,SG,5.4,1.0,1.4,,,['SG'],adrian_smith_sac_1970s,adrian_smith,1970s,no_bbref_match
+SAC,Bill Turner,PF,7.2,4.2,0.6,,,"['PF', 'SF']",bill_turner_sac_1970s,bill_turner,1970s,no_bbref_match
+SAC,Bob Arnzen,SF,5.5,2.8,0.4,,,['SF'],bob_arnzen_sac_1970s,bob_arnzen,1970s,no_bbref_match
+SAC,Charlie Paulk,PF,9.2,4.7,0.4,,,['PF'],charlie_paulk_sac_1970s,charlie_paulk,1970s,no_bbref_match
+SAC,Connie Dierking,C,16.56,8.18,2.18,,,['C'],connie_dierking_sac_1970s,connie_dierking,1970s,no_bbref_match
+SAC,Darrall Imhoff,C,6.95,6.08,1.86,,,['C'],darrall_imhoff_sac_1970s,darrall_imhoff,1970s,no_bbref_match
+SAC,Flynn Robinson,SG,13.3,2.0,1.9,,,"['PG', 'SG']",flynn_robinson_sac_1970s,flynn_robinson,1970s,no_bbref_match
+SAC,Fred Taylor,SG,3.4,1.8,0.5,,,['SG'],fred_taylor_sac_1970s,fred_taylor,1970s,no_bbref_match
+SAC,Gil McGregor,PF,4.1,3.5,0.4,,,['PF'],gil_mcgregor_sac_1970s,gil_mcgregor,1970s,no_bbref_match
+SAC,Greg Hyder,SF,5.4,4.3,0.6,,,['SF'],greg_hyder_sac_1970s,greg_hyder,1970s,no_bbref_match
+SAC,Jim King,SG,2.9,1.5,1.4,,,"['PG', 'SG']",jim_king_sac_1970s,jim_king,1970s,no_bbref_match
+SAC,Johnny Green,PF,12.43,8.02,1.27,,,['PF'],johnny_green_sac_1970s,johnny_green,1970s,no_bbref_match
+SAC,Moe Barr,UNK,2.0,0.6,0.9,,,[],moe_barr_sac_1970s,moe_barr,1970s,no_bbref_match
+SAC,Wally Anderzunas,SF,3.6,1.9,0.2,,,['SF'],wally_anderzunas_sac_1970s,wally_anderzunas,1970s,no_bbref_match
+SAC,Marlon Redmond,SG,5.9,2.2,0.8,0.2,0.4,['SG'],marlon_redmond_sac_1980s,marlon_redmond,1980s,no_bbref_match
+SAC,Mike Green,C,7.7,5.4,1.3,0.6,1.0,['C'],mike_green_sac_1980s,mike_green,1980s,no_bbref_match
+SAC,Harold Pressley,SF,8.8,4.3,2.1,0.8,0.5,"['PF', 'SF']",harold_pressley_sac_1990s,harold_pressley,1990s,no_bbref_match
+SAC,Randy Allen,SG,3.7,2.2,0.4,0.3,0.3,['SG'],randy_allen_sac_1990s,randy_allen,1990s,no_bbref_match
+SAC,Kenny Thomas,PF,1.6,3.3,0.6,0.4,0.4,['PF'],kenny_thomas_sac_2010s,kenny_thomas,2010s,no_bbref_match
+SAC,Sean May,C,3.3,1.9,0.5,0.3,0.2,"['C', 'PF']",sean_may_sac_2010s,sean_may,2010s,no_bbref_match
+SAS,Wiley Peck,SF,3.5,3.5,0.6,0.3,0.4,['SF'],wiley_peck_sas_1980s,wiley_peck,1980s,no_bbref_match
+SAS,Caldwell Jones,PF,2.4,3.2,0.3,0.3,0.4,"['C', 'PF']",caldwell_jones_sas_1990s,caldwell_jones,1990s,no_bbref_match
+SAS,Johnny Moore,PG,2.2,1.0,1.5,0.6,0.1,['PG'],johnny_moore_sas_1990s,johnny_moore,1990s,no_bbref_match
+SAS,Malik Hairston,SG,2.1,1.0,0.3,0.1,0.2,['SG'],malik_hairston_sas_2010s,malik_hairston,2010s,no_bbref_match
+SAS,Michael Finley,SF,3.7,1.5,0.8,0.2,0.2,"['SF', 'SG']",michael_finley_sas_2010s,michael_finley,2010s,no_bbref_match
+TOR,Rasho Nesterović,C,3.9,2.1,0.6,0.2,0.4,['C'],rasho_nesterovi_tor_2010s,rasho_nesterovi,2010s,no_bbref_match
+UTA,Duck Williams,PG,6.6,1.4,2.4,1.3,0.1,['PG'],duck_williams_uta_1980s,duck_williams,1980s,no_bbref_match
+UTA,Paul Dawkins,SF,5.5,2.2,1.4,0.6,0.2,['SF'],paul_dawkins_uta_1980s,paul_dawkins,1980s,no_bbref_match
+UTA,Terry Furlow,SG,16.0,2.8,4.0,1.0,0.3,['SG'],terry_furlow_uta_1980s,terry_furlow,1980s,no_bbref_match
+UTA,Eric Johnson,PG,1.1,0.6,1.3,0.4,0.0,['PG'],eric_johnson_uta_1990s,eric_johnson,1990s,no_bbref_match
+UTA,Armen Gilliam,PF,6.7,4.2,0.8,0.2,0.3,"['PF', 'SF']",armen_gilliam_uta_2000s,armen_gilliam,2000s,no_bbref_match
+UTA,Jeff Hornacek,SG,12.4,2.4,2.6,0.9,0.2,"['PG', 'SG']",jeff_hornacek_uta_2000s,jeff_hornacek,2000s,no_bbref_match
+UTA,Pete Chilcutt,PF,1.8,1.7,0.4,0.2,0.2,['PF'],pete_chilcutt_uta_2000s,pete_chilcutt,2000s,no_bbref_match
+WAS,Al Tucker,PF,4.44,2.16,0.25,,,['PF'],al_tucker_was_1970s,al_tucker,1970s,no_bbref_match
+WAS,Dorie Murrey,PF,2.78,2.84,0.36,,,"['C', 'PF']",dorie_murrey_was_1970s,dorie_murrey,1970s,no_bbref_match
+WAS,Ed Manning,PF,2.4,1.2,0.1,,,"['PF', 'SF']",ed_manning_was_1970s,ed_manning,1970s,no_bbref_match
+WAS,Eddie Miles,SG,9.71,2.64,1.68,,,"['PG', 'SG']",eddie_miles_was_1970s,eddie_miles,1970s,no_bbref_match
+WAS,Flynn Robinson,SG,6.9,1.4,2.0,,,"['PG', 'SG']",flynn_robinson_was_1970s,flynn_robinson,1970s,no_bbref_match
+WAS,Gary Zeller,SG,3.49,1.15,0.46,,,['SG'],gary_zeller_was_1970s,gary_zeller,1970s,no_bbref_match
+WAS,Gus Johnson,PF,15.3,13.33,2.77,,,"['PF', 'SF']",gus_johnson_was_1970s,gus_johnson,1970s,no_bbref_match
+WAS,John Tresvant,PF,6.2,4.5,1.02,,,['PF'],john_tresvant_was_1970s,john_tresvant,1970s,no_bbref_match
+WAS,Kevin Loughery,SG,17.67,2.86,4.34,,,"['PG', 'SG']",kevin_loughery_was_1970s,kevin_loughery,1970s,no_bbref_match
+WAS,Mike Davis,PF,11.45,2.38,1.91,,,"['PF', 'SG']",mike_davis_was_1970s,mike_davis,1970s,no_bbref_match
+WAS,Ray Scott,PF,8.9,6.3,1.6,,,"['C', 'PF']",ray_scott_was_1970s,ray_scott,1970s,no_bbref_match
+WAS,Gus Bailey,SG,1.9,1.4,1.3,0.4,0.2,['SG'],gus_bailey_was_1980s,gus_bailey,1980s,no_bbref_match
+WAS,Jim Cleamons,PG,7.8,2.3,4.4,0.8,0.2,['PG'],jim_cleamons_was_1980s,jim_cleamons,1980s,no_bbref_match
+WAS,Doug Roth,C,1.9,2.9,0.5,0.2,0.3,['C'],doug_roth_was_1990s,doug_roth,1990s,no_bbref_match
+WAS,Ed Horton,PF,4.5,2.4,0.4,0.2,0.1,['PF'],ed_horton_was_1990s,ed_horton,1990s,no_bbref_match
+WAS,Melvin Turpin,C,4.7,3.7,0.5,0.3,0.8,['C'],melvin_turpin_was_1990s,melvin_turpin,1990s,no_bbref_match
+WAS,Reggie Jordan,PG,1.1,1.1,0.9,0.3,0.1,"['PG', 'SG']",reggie_jordan_was_2000s,reggie_jordan,2000s,no_bbref_match
+CLE,Marcus Morris Sr.,G/F,6.4,2.7,0.7,0.3,0.3,"['SG', 'SF']",marcus_morris_sr_cle_2020s,marcus_morris_sr,2020s,no_bbref_match
+LAC,Marcus Morris Sr.,G/F,13.3,4.2,1.6,0.6,0.3,"['SG', 'SF']",marcus_morris_sr_lac_2020s,marcus_morris_sr,2020s,no_bbref_match
+DAL,Reggie Bullock Jr.,G/F,7.9,3.5,1.3,0.6,0.2,"['SG', 'SF']",reggie_bullock_jr_dal_2020s,reggie_bullock_jr,2020s,no_bbref_match
+HOU,Reggie Bullock Jr.,G/F,2.2,1.7,0.3,0.3,0.1,"['SG', 'SF']",reggie_bullock_jr_hou_2020s,reggie_bullock_jr,2020s,no_bbref_match
+NYK,Reggie Bullock Jr.,G/F,10.9,3.4,1.5,0.8,0.2,"['SG', 'SF']",reggie_bullock_jr_nyk_2020s,reggie_bullock_jr,2020s,no_bbref_match
+LAL,Harry Giles III,G/F,2.4,1.3,0.3,0.1,0.1,"['SG', 'SF']",harry_giles_iii_lal_2020s,harry_giles_iii,2020s,no_bbref_match
+POR,Harry Giles III,G/F,2.8,3.5,0.8,0.2,0.3,"['SG', 'SF']",harry_giles_iii_por_2020s,harry_giles_iii,2020s,no_bbref_match
+DET,Derrick Walton Jr.,G/F,6.3,3.3,7.0,2.3,1.3,"['SG', 'SF']",derrick_walton_jr_det_2020s,derrick_walton_jr,2020s,no_bbref_match
+IND,Brian Bowen II,G/F,0.5,0.5,0.0,0.0,0.0,"['SG', 'SF']",brian_bowen_ii_ind_2020s,brian_bowen_ii,2020s,no_bbref_match
+OKC,Melvin Frazier Jr.,G/F,10.7,4.3,0.3,0.3,0.0,"['SG', 'SF']",melvin_frazier_jr_okc_2020s,melvin_frazier_jr,2020s,no_bbref_match
+ATL,Kevin Knox II,G/F,3.1,1.5,0.3,0.1,0.1,"['SG', 'SF']",kevin_knox_ii_atl_2020s,kevin_knox_ii,2020s,no_bbref_match
+GSW,Kevin Knox II,G/F,3.3,1.2,0.4,0.1,0.3,"['SG', 'SF']",kevin_knox_ii_gsw_2020s,kevin_knox_ii,2020s,no_bbref_match
+NYK,Kevin Knox II,G/F,3.9,1.5,0.5,0.3,0.1,"['SG', 'SF']",kevin_knox_ii_nyk_2020s,kevin_knox_ii,2020s,no_bbref_match
+POR,Kevin Knox II,G/F,6.9,2.6,0.6,0.4,0.2,"['SG', 'SF']",kevin_knox_ii_por_2020s,kevin_knox_ii,2020s,no_bbref_match
+BOS,Robert Williams III,G/F,8.7,8.3,1.7,0.8,1.8,"['SG', 'SF']",robert_williams_iii_bos_2020s,robert_williams_iii,2020s,no_bbref_match
+POR,Robert Williams III,G/F,6.4,6.4,1.0,0.8,1.5,"['SG', 'SF']",robert_williams_iii_por_2020s,robert_williams_iii,2020s,no_bbref_match
+HOU,Cam Reynolds,G/F,3.0,1.0,0.4,0.0,0.0,"['SG', 'SF']",cam_reynolds_hou_2020s,cam_reynolds,2020s,no_bbref_match
+BOS,Xavier Tillman,G/F,3.1,2.6,0.8,0.6,0.5,"['SG', 'SF']",xavier_tillman_bos_2020s,xavier_tillman,2020s,no_bbref_match
+CHA,Xavier Tillman,G/F,1.5,1.4,0.4,0.3,0.2,"['SG', 'SF']",xavier_tillman_cha_2020s,xavier_tillman,2020s,no_bbref_match
+MEM,Xavier Tillman,G/F,6.1,4.1,1.4,0.9,0.5,"['SG', 'SF']",xavier_tillman_mem_2020s,xavier_tillman,2020s,no_bbref_match
+BKN,Trevon Scott,G/F,8.0,5.2,1.7,1.3,0.8,"['SG', 'SF']",trevon_scott_bkn_2020s,trevon_scott,2020s,no_bbref_match
+CLE,Trevon Scott,G/F,3.0,1.0,0.0,0.5,0.5,"['SG', 'SF']",trevon_scott_cle_2020s,trevon_scott,2020s,no_bbref_match
+LAC,Brandon Boston,G/F,6.1,1.7,0.8,0.4,0.2,"['SG', 'SF']",brandon_boston_lac_2020s,brandon_boston,2020s,no_bbref_match
+NOP,Brandon Boston,G/F,10.7,3.2,2.2,1.3,0.2,"['SG', 'SF']",brandon_boston_nop_2020s,brandon_boston,2020s,no_bbref_match
+MEM,Matt Hurt,G/F,4.0,2.0,0.5,0.4,0.4,"['SG', 'SF']",matt_hurt_mem_2020s,matt_hurt,2020s,no_bbref_match
+CLE,Ruben Nembhard Jr.,G/F,1.1,0.5,0.9,0.1,0.0,"['SG', 'SF']",ruben_nembhard_jr_cle_2020s,ruben_nembhard_jr,2020s,no_bbref_match
+POR,John Butler Jr.,G/F,2.4,0.9,0.6,0.4,0.5,"['SG', 'SF']",john_butler_jr_por_2020s,john_butler_jr,2020s,no_bbref_match
+HOU,Jermaine Samuels Jr.,G/F,1.4,0.9,0.2,0.1,0.1,"['SG', 'SF']",jermaine_samuels_jr_hou_2020s,jermaine_samuels_jr,2020s,no_bbref_match
+MEM,GG Jackson,G/F,11.4,3.9,1.2,0.5,0.5,"['SG', 'SF']",gg_jackson_mem_2020s,gg_jackson,2020s,no_bbref_match
+DEN,DaRon Holmes II,F,3.7,1.4,0.6,0.0,0.2,['PF'],daron_holmes_ii_den_2020s,daron_holmes_ii,2020s,no_bbref_match
+DET,Ronald Holland II,G/F,7.3,3.4,1.1,0.9,0.2,"['SG', 'SF']",ronald_holland_ii_det_2020s,ronald_holland_ii,2020s,no_bbref_match
+LAL,Trey Jemison III,G/F,2.5,2.8,0.4,0.2,0.4,"['SG', 'SF']",trey_jemison_iii_lal_2020s,trey_jemison_iii,2020s,no_bbref_match
+MEM,Trey Jemison III,G/F,6.8,5.4,1.1,0.5,1.1,"['SG', 'SF']",trey_jemison_iii_mem_2020s,trey_jemison_iii,2020s,no_bbref_match
+NYK,Trey Jemison III,G/F,1.0,1.4,0.4,0.1,0.2,"['SG', 'SF']",trey_jemison_iii_nyk_2020s,trey_jemison_iii,2020s,no_bbref_match
+MEM,Adama Bal,G/F,10.4,3.1,2.4,1.1,0.1,"['SG', 'SF']",adama_bal_mem_2020s,adama_bal,2020s,no_bbref_match
+MEM,Walter Clayton Jr.,G/F,7.8,2.0,4.0,0.6,0.3,"['SG', 'SF']",walter_clayton_jr_mem_2020s,walter_clayton_jr,2020s,no_bbref_match
+BKN,Cui Cui,G/F,0.6,0.4,0.0,0.0,0.0,"['SG', 'SF']",cui_cui_bkn_2020s,cui_cui,2020s,no_bbref_match
+CLE,Darius Brown,G/F,0.0,1.0,0.0,0.0,0.0,"['SG', 'SF']",darius_brown_cle_2020s,darius_brown,2020s,no_bbref_match
+BKN,Egor Dëmin,G/F,10.3,3.2,3.3,0.8,0.3,"['SG', 'SF']",egor_d_min_bkn_2020s,egor_d_min,2020s,no_bbref_match
