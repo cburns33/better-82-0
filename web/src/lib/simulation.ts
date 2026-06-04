@@ -1,4 +1,5 @@
 import type { GameMode, MetricKey, Player, TeamResult } from '../types'
+import { METRIC_LABELS } from '../types'
 
 const METRICS: MetricKey[] = ['ws48', 'vorp', 'obpm', 'dbpm', 'per']
 
@@ -161,4 +162,40 @@ export function formatMetric(key: MetricKey, value: number | null): string {
   if (key === 'ws48') return value.toFixed(3)
   if (key === 'per') return value.toFixed(1)
   return value.toFixed(1)
+}
+
+export interface MetricBreakdownRow {
+  key: MetricKey
+  label: string
+  average: number | null
+  /** MVP-level benchmark used in Classic OVR (same as DIVISORS). */
+  benchmark: number
+  /** normForClassic ratio — 1.0 ≈ elite peak average. */
+  normalized: number
+  weight: number
+  /** Share of weighted normalized total (sums to 100 when all metrics present). */
+  weightPct: number
+}
+
+export function getLineupMetricBreakdown(roster: readonly Player[]): MetricBreakdownRow[] {
+  const rows: Omit<MetricBreakdownRow, 'weightPct'>[] = []
+
+  for (const key of METRICS) {
+    const avg = lineupAverage([...roster], key)
+    const normalized = avg == null ? 0 : normForClassic(avg, key)
+    rows.push({
+      key,
+      label: METRIC_LABELS[key],
+      average: avg,
+      benchmark: DIVISORS[key],
+      normalized,
+      weight: WEIGHTS[key],
+    })
+  }
+
+  const weightSum = rows.reduce((sum, r) => sum + (r.average != null ? r.weight : 0), 0)
+  return rows.map((r) => ({
+    ...r,
+    weightPct: weightSum > 0 && r.average != null ? (r.weight / weightSum) * 100 : 0,
+  }))
 }

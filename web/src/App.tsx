@@ -1,7 +1,8 @@
 import { BarChart3, Brain, Trophy } from 'lucide-react'
-import { useCallback, useMemo, useState, type ReactNode } from 'react'
+import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react'
 import { PlayerCard } from '@/components/PlayerCard'
 import { PositionFilter, type PositionFilterValue } from '@/components/PositionFilter'
+import { ResultsScreen } from '@/components/ResultsScreen'
 import { SlotMachine } from '@/components/SlotMachine'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -18,6 +19,7 @@ import {
   type SpinResolveOptions,
 } from '@/lib/data'
 import { sortPlayerPool } from '@/lib/sortPool'
+import { parseShareFromLocation } from '@/lib/shareRun'
 import { calculateTeamResult } from '@/lib/simulation'
 import { teamColors } from '@/lib/teams'
 import { cn } from '@/lib/utils'
@@ -88,10 +90,12 @@ function AppShell({
 
 function App() {
   const players = useMemo(() => loadPlayers(), [])
+  const playerById = useMemo(() => new Map(players.map((p) => [p.id, p])), [players])
   const teams = useMemo(() => buildTeams(players), [players])
 
   const [phase, setPhase] = useState<Phase>('menu')
   const [mode, setMode] = useState<GameMode>('classic')
+  const [sharedView, setSharedView] = useState(false)
   const [round, setRound] = useState(0)
   const [roster, setRoster] = useState<(Player | null)[]>(Array(ROUNDS).fill(null))
   const [usedIds, setUsedIds] = useState<Set<string>>(() => new Set())
@@ -104,6 +108,15 @@ function App() {
   const [decadeSkipLeft, setDecadeSkipLeft] = useState(true)
   const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null)
   const [positionFilter, setPositionFilter] = useState<PositionFilterValue>('ALL')
+
+  useEffect(() => {
+    const shared = parseShareFromLocation(playerById)
+    if (!shared) return
+    setMode(shared.mode)
+    setRoster([...shared.roster])
+    setSharedView(true)
+    setPhase('done')
+  }, [playerById])
 
   const openSlots = useMemo(() => getOpenSlots(roster), [roster])
   const openPositions = useMemo(() => openSlots.map((s) => s.position), [openSlots])
@@ -162,6 +175,7 @@ function App() {
   )
 
   const startGame = (selectedMode: GameMode) => {
+    setSharedView(false)
     setMode(selectedMode)
     setRound(0)
     setRoster(Array(ROUNDS).fill(null))
@@ -187,6 +201,7 @@ function App() {
     setSelectedPlayer(null)
 
     if (round + 1 >= ROUNDS) {
+      setSharedView(false)
       setPhase('done')
       setSlot(null)
     } else {
@@ -260,38 +275,16 @@ function App() {
   if (phase === 'done' && result) {
     return (
       <AppShell>
-        <header className="text-center mb-6">
-          <h1 className="text-2xl font-bold tracking-tight">Season complete</h1>
-        </header>
-        <Card
-          className="border-2 text-center"
-          style={{ borderColor: result.color }}
-        >
-          <CardContent className="pt-8 pb-8">
-            <p
-              className="text-6xl font-black tabular-nums tracking-tight"
-              style={{ color: result.color }}
-            >
-              {result.wins}–{result.losses}
-            </p>
-            <p className="mt-2 text-xl font-semibold" style={{ color: result.color }}>
-              {result.grade} · {result.label}
-            </p>
-            <p className="mt-4 text-sm text-muted-foreground">
-              Team strength <span className="font-mono text-foreground">{result.teamOvr}</span>
-            </p>
-          </CardContent>
-        </Card>
-        <div className="mt-6 space-y-2">
-          {roster.map((p, i) =>
-            p ? (
-              <PlayerCard key={p.id} player={p} mode="classic" eligiblePositions={[POSITIONS[i]!]} />
-            ) : null,
-          )}
-        </div>
-        <Button size="lg" className="mt-8 w-full" onClick={() => setPhase('menu')}>
-          Play again
-        </Button>
+        <ResultsScreen
+          mode={mode}
+          roster={roster}
+          result={result}
+          shared={sharedView}
+          onPlayAgain={() => {
+            setSharedView(false)
+            setPhase('menu')
+          }}
+        />
       </AppShell>
     )
   }
