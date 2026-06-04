@@ -2,6 +2,8 @@
 
 Local fan build of the [82-0](https://www.82-0.com/) draft game using advanced stats (**WS/48, VORP, OBPM, DBPM, PER**) instead of box-score totals. Not affiliated with 82-0.com or the NBA.
 
+**Agents / maintainers:** see [HANDOFF.md](./HANDOFF.md) for architecture, deploy, and game rules.
+
 **Live demo:** Deploy via Vercel (see below) or run locally.
 
 ## Play locally

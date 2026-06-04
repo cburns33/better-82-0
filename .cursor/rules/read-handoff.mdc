@@ -1,0 +1,18 @@
+---
+description: Read project handoff before any substantive work in this repo
+alwaysApply: true
+---
+
+# Better 82-0 — session start
+
+This workspace is the **Better 82-0** project (`web/` Vite app + `data/` + `scripts/`).
+
+**Before planning, coding, debugging, or deploying**, use the Read tool on **`HANDOFF.md`** at the repository root (same folder as this file’s project). Treat it as source of truth for architecture, game rules, deploy, and known pitfalls.
+
+If the user’s request contradicts `HANDOFF.md`, follow the user and offer to update `HANDOFF.md` when the change is intentional.
+
+**Do not** re-derive project layout from chat history alone when `HANDOFF.md` exists.
+
+**Commits / pushes:** only when the user explicitly asks.
+
+**Workspace:** work from this repo root, not the user home directory.
