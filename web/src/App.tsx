@@ -255,7 +255,8 @@ function App() {
     )
   }
 
-  const slotColors = slot ? teamColors(slot.team) : null
+  const machineTarget = spinTarget ?? slot
+  const machineSpinning = spinning && spinTarget != null
   const openLabel = openPositions.length > 0 ? openPositions.join(', ') : '—'
 
   return (
@@ -299,15 +300,15 @@ function App() {
           </CardDescription>
         </CardHeader>
         <CardContent className="text-center pb-6">
-          {spinning && spinTarget ? (
+          {machineTarget ? (
             <SlotMachine
               teamOptions={teamList}
               decadeOptions={decadeLabels}
-              target={{ team: spinTarget.team, decadeLabel: spinTarget.decadeLabel }}
-              spinning
-              lockTeam={spinLocks.team}
-              lockDecade={spinLocks.decade}
-              onComplete={completeSpin}
+              target={{ team: machineTarget.team, decadeLabel: machineTarget.decadeLabel }}
+              spinning={machineSpinning}
+              lockTeam={machineSpinning && spinLocks.team}
+              lockDecade={machineSpinning && spinLocks.decade}
+              onComplete={machineSpinning ? completeSpin : undefined}
               renderTeam={(team, active) => {
                 const colors = teamColors(team)
                 return (
@@ -331,27 +332,6 @@ function App() {
                 >
                   {label}
                 </span>
-              )}
-            />
-          ) : slot && slotColors ? (
-            <SlotMachine
-              teamOptions={teamList}
-              decadeOptions={decadeLabels}
-              target={{ team: slot.team, decadeLabel: slot.decadeLabel }}
-              spinning={false}
-              renderTeam={(team) => {
-                const colors = teamColors(team)
-                return (
-                  <Badge
-                    className="text-xl font-black px-4 py-2 h-auto border-0"
-                    style={{ backgroundColor: colors.bg, color: colors.text }}
-                  >
-                    {team}
-                  </Badge>
-                )
-              }}
-              renderDecade={(label) => (
-                <span className="text-2xl font-bold text-primary tabular-nums">{label}</span>
               )}
             />
           ) : (

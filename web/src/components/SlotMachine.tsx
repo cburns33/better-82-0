@@ -27,6 +27,7 @@ function SlotReel<T extends string>({
 }: SlotReelProps<T>) {
   const stripRef = useRef<HTMLDivElement>(null)
   const stoppedRef = useRef(false)
+  const lastOffsetRef = useRef(0)
 
   const targetIndex = Math.max(0, items.indexOf(value))
 
@@ -60,11 +61,13 @@ function SlotReel<T extends string>({
 
     if (!spinning) {
       setOffset(finalOffset, false)
+      lastOffsetRef.current = finalOffset
       return
     }
 
     if (locked) {
       setOffset(finalOffset, false)
+      lastOffsetRef.current = finalOffset
       finish()
       return
     }
@@ -75,16 +78,27 @@ function SlotReel<T extends string>({
 
     if (reduced) {
       setOffset(finalOffset, false)
+      lastOffsetRef.current = finalOffset
       finish()
       return
     }
 
-    setOffset(0, false)
+    const itemCount = items.length
+    const minTravel = SPIN_CYCLES * itemCount * ITEM_HEIGHT
+    const startOffset = lastOffsetRef.current
+    const startIndex =
+      itemCount > 0 ? Math.round(startOffset / ITEM_HEIGHT) % itemCount : 0
+    const forwardSteps = (targetIndex - startIndex + itemCount) % itemCount
+    const endOffset = startOffset + minTravel + forwardSteps * ITEM_HEIGHT
+
+    setOffset(startOffset, false)
     void el.offsetHeight
-    setOffset(finalOffset, true)
+    setOffset(endOffset, true)
 
     const onEnd = (e: TransitionEvent) => {
       if (e.propertyName !== 'transform') return
+      setOffset(finalOffset, false)
+      lastOffsetRef.current = finalOffset
       finish()
     }
     el.addEventListener('transitionend', onEnd)
@@ -109,12 +123,6 @@ function SlotReel<T extends string>({
       />
       <div
         className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-6 bg-gradient-to-t from-card to-transparent"
-        aria-hidden
-      />
-      <div
-        className={cn(
-          'absolute inset-x-2 top-1/2 z-[1] h-[3px] -translate-y-1/2 rounded-full bg-primary/70 shadow-[0_0_12px_oklch(0.75_0.16_75/0.5)]',
-        )}
         aria-hidden
       />
       <div className="relative h-16 overflow-hidden rounded-lg border-2 border-border bg-background/80 shadow-inner">
