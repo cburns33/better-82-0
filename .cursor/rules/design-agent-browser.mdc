@@ -1,0 +1,41 @@
+---
+description: Use agent-browser CLI for UX research and local UI verification (design/UI work)
+globs: web/src/**/*.{tsx,css}
+alwaysApply: false
+---
+
+# Design agent — agent-browser
+
+Use the global **`agent-browser`** CLI (not `npx`). Chrome is installed via `agent-browser install`.
+
+## When to use
+
+- **Reference sites:** User asks for UX inspiration, layout patterns, or “how does X site do Y?”
+- **Local app:** After `cd web && npm run dev`, verify UI changes on `http://localhost:5173`
+- **Dogfood / QA:** For systematic exploration, run `agent-browser skills get dogfood --full` and follow that workflow
+
+## Do not use for
+
+- **https://www.82-0.com/** — do not treat the original game as a design reference unless the user explicitly asks
+- Replacing the data pipeline or BBRef scripts
+
+## Standard workflow
+
+```bash
+agent-browser open <url>
+agent-browser snapshot -i -c    # interactive elements with @refs
+agent-browser screenshot        # optional visual evidence
+agent-browser close
+```
+
+Use `@e1`, `@e2` refs from the snapshot for `click`, `fill`, `scroll`, etc.
+
+## Local dev
+
+1. Start dev server: `cd web && npm run dev`
+2. Browse: `agent-browser open http://localhost:5173`
+3. After UI edits, re-snapshot and screenshot before claiming done
+
+## Output for the user
+
+Summarize what you observed (layout, motion, typography, interaction patterns) and tie recommendations to files under `web/src/`. Save screenshots under the repo only if the user wants artifacts committed.

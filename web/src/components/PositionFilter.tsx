@@ -9,14 +9,24 @@ interface Props {
   value: PositionFilterValue
   onChange: (value: PositionFilterValue) => void
   openPositions: Position[]
+  compact?: boolean
 }
 
-export function PositionFilter({ value, onChange, openPositions }: Props) {
+export function PositionFilter({ value, onChange, openPositions, compact }: Props) {
   const openSet = new Set(openPositions)
 
   return (
-    <div className="flex flex-wrap items-center gap-2 mb-3">
-      <span className="text-xs text-muted-foreground uppercase tracking-wide mr-1">Position</span>
+    <div
+      className={cn(
+        'flex items-center gap-1.5 overflow-x-auto',
+        compact ? 'pb-2 shrink-0' : 'flex-wrap gap-2 mb-3',
+      )}
+    >
+      {!compact && (
+        <span className="text-xs text-muted-foreground uppercase tracking-wide mr-1 shrink-0">
+          Position
+        </span>
+      )}
       <Button
         type="button"
         size="sm"
@@ -32,7 +42,7 @@ export function PositionFilter({ value, onChange, openPositions }: Props) {
           size="sm"
           variant={value === pos ? 'default' : 'outline'}
           onClick={() => onChange(pos)}
-          className={cn(!openSet.has(pos) && value !== pos && 'opacity-50')}
+          className={cn('shrink-0', !openSet.has(pos) && value !== pos && 'opacity-50')}
           title={
             openSet.has(pos)
               ? `Can fill open ${pos}`

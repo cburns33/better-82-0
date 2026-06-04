@@ -1,13 +1,12 @@
-import { Trophy } from 'lucide-react'
+import { BarChart3, Brain, Trophy } from 'lucide-react'
 import { useCallback, useMemo, useState, type ReactNode } from 'react'
 import { PlayerCard } from '@/components/PlayerCard'
 import { PositionFilter, type PositionFilterValue } from '@/components/PositionFilter'
 import { SlotMachine } from '@/components/SlotMachine'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import { Separator } from '@/components/ui/separator'
 import {
   buildTeams,
   filterPoolByPosition,
@@ -29,19 +28,57 @@ type Phase = 'menu' | 'spin' | 'pick' | 'done'
 
 const ROUNDS = 5
 
+function MetadataChip({ children }: { children: ReactNode }) {
+  return (
+    <span className="inline-flex items-center rounded-full border border-border/60 bg-secondary/50 px-2.5 py-0.5 text-[11px] font-medium text-muted-foreground">
+      {children}
+    </span>
+  )
+}
+
+function ModeChoiceCard({
+  title,
+  description,
+  icon,
+  onClick,
+}: {
+  title: string
+  description: string
+  icon: ReactNode
+  onClick: () => void
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className="group flex flex-1 flex-col items-start rounded-xl border border-border/80 bg-card p-4 text-left shadow-sm transition-[box-shadow,transform,border-color] hover:border-primary/40 hover:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.35)] active:scale-[0.96]"
+    >
+      <div className="mb-3 flex size-9 items-center justify-center rounded-lg bg-primary/15 text-primary transition-colors group-hover:bg-primary/25">
+        {icon}
+      </div>
+      <p className="font-semibold leading-tight">{title}</p>
+      <p className="mt-1 text-xs text-muted-foreground leading-relaxed">{description}</p>
+    </button>
+  )
+}
+
 function AppShell({
   children,
   constrain,
+  wide,
 }: {
   children: ReactNode
   /** Lock to viewport height so inner lists can scroll (draft screen). */
   constrain?: boolean
+  /** Wider shell for split slot + pick layout on desktop. */
+  wide?: boolean
 }) {
   return (
     <div
       className={cn(
-        'flex flex-col max-w-2xl mx-auto px-4 py-6 sm:py-8',
-        constrain ? 'h-dvh max-h-dvh overflow-hidden' : 'min-h-screen',
+        'flex flex-col mx-auto px-4',
+        wide ? 'w-full max-w-5xl' : 'max-w-2xl',
+        constrain ? 'h-dvh max-h-dvh overflow-hidden py-3 sm:py-4' : 'min-h-screen py-6 sm:py-8',
       )}
     >
       {children}
@@ -65,7 +102,7 @@ function App() {
   const [spinLocks, setSpinLocks] = useState({ team: false, decade: false })
   const [teamSkipLeft, setTeamSkipLeft] = useState(true)
   const [decadeSkipLeft, setDecadeSkipLeft] = useState(true)
-  const [pendingPick, setPendingPick] = useState<Player | null>(null)
+  const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null)
   const [positionFilter, setPositionFilter] = useState<PositionFilterValue>('ALL')
 
   const openSlots = useMemo(() => getOpenSlots(roster), [roster])
@@ -87,8 +124,8 @@ function App() {
   }, [teams, slot, phase, roster, usedIds, positionFilter, mode])
 
   const pendingSlots = useMemo(
-    () => (pendingPick ? getEligibleSlots(pendingPick, roster) : []),
-    [pendingPick, roster],
+    () => (selectedPlayer ? getEligibleSlots(selectedPlayer, roster) : []),
+    [selectedPlayer, roster],
   )
 
   const result = useMemo(
@@ -113,7 +150,7 @@ function App() {
 
   const spinSlot = useCallback(
     (opts?: SpinResolveOptions) => {
-      setPendingPick(null)
+      setSelectedPlayer(null)
       setPositionFilter('ALL')
       setSlot(null)
       setSpinLocks({ team: Boolean(opts?.keepTeam), decade: Boolean(opts?.keepDecade) })
@@ -133,7 +170,7 @@ function App() {
     setSlot(null)
     setSpinTarget(null)
     setSpinning(false)
-    setPendingPick(null)
+    setSelectedPlayer(null)
     setPositionFilter('ALL')
     setTeamSkipLeft(true)
     setDecadeSkipLeft(true)
@@ -147,7 +184,7 @@ function App() {
     setRoster(nextRoster)
     setUsedIds(new Set(usedIds).add(player.id))
     if (slot) setUsedEras(new Set(usedEras).add(slot.era))
-    setPendingPick(null)
+    setSelectedPlayer(null)
 
     if (round + 1 >= ROUNDS) {
       setPhase('done')
@@ -163,24 +200,20 @@ function App() {
   const onChoosePlayer = (player: Player) => {
     const eligible = getEligibleSlots(player, roster)
     if (eligible.length === 0) return
-    if (eligible.length === 1) {
-      assignPlayer(player, eligible[0]!.index)
-      return
-    }
-    setPendingPick(player)
+    setSelectedPlayer(player)
   }
 
   const skipTeam = () => {
     if (!teamSkipLeft || !slot) return
     setTeamSkipLeft(false)
-    setPendingPick(null)
+    setSelectedPlayer(null)
     spinSlot({ keepDecade: true, excludeTeam: slot.team })
   }
 
   const skipDecade = () => {
     if (!decadeSkipLeft || !slot) return
     setDecadeSkipLeft(false)
-    setPendingPick(null)
+    setSelectedPlayer(null)
     spinSlot({ keepTeam: true, excludeEra: slot.era })
   }
 
@@ -190,25 +223,33 @@ function App() {
         <div className="flex items-center gap-2 mb-2 text-primary">
           <Trophy className="size-8" aria-hidden />
         </div>
-        <h1 className="text-4xl font-bold tracking-tight text-center">Better 82-0</h1>
-        <p className="mt-3 text-muted-foreground text-center max-w-md text-sm leading-relaxed">
+        <h1 className="text-4xl font-bold tracking-tight text-center text-balance">Better 82-0</h1>
+        <p className="mt-3 text-muted-foreground text-center max-w-md text-sm leading-relaxed text-pretty">
           Build an all-time starting five (1970s–2020s) with WS/48, VORP, OBPM, DBPM, and PER.
           Fan project — not affiliated with 82-0.com.
         </p>
-        <Card className="mt-10 w-full max-w-sm">
-          <CardHeader className="text-center">
-            <CardTitle className="text-base">Choose mode</CardTitle>
-            <CardDescription>Five rounds · one pick per slot spin</CardDescription>
-          </CardHeader>
-          <CardContent className="flex flex-col gap-3">
-            <Button size="lg" onClick={() => startGame('classic')}>
-              Classic — stats visible
-            </Button>
-            <Button size="lg" variant="outline" onClick={() => startGame('hoopiq')}>
-              HoopIQ — stats hidden
-            </Button>
-          </CardContent>
-        </Card>
+        <div className="mt-10 w-full max-w-md">
+          <p className="text-center text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">
+            Choose mode
+          </p>
+          <p className="text-center text-xs text-muted-foreground mb-4">
+            Five rounds · one pick per slot spin
+          </p>
+          <div className="flex gap-3">
+            <ModeChoiceCard
+              title="Classic"
+              description="Stats visible — pick by strength"
+              icon={<BarChart3 className="size-5" aria-hidden />}
+              onClick={() => startGame('classic')}
+            />
+            <ModeChoiceCard
+              title="HoopIQ"
+              description="Stats hidden — pick from memory"
+              icon={<Brain className="size-5" aria-hidden />}
+              onClick={() => startGame('hoopiq')}
+            />
+          </div>
+        </div>
         <p className="mt-6 text-xs text-muted-foreground">
           {players.length.toLocaleString()} player entries
         </p>
@@ -258,34 +299,106 @@ function App() {
   const machineTarget = spinTarget ?? slot
   const machineSpinning = spinning && spinTarget != null
   const openLabel = openPositions.length > 0 ? openPositions.join(', ') : '—'
+  const isPickPhase = phase === 'pick'
+
+  const slotMachineBlock = machineTarget ? (
+    <SlotMachine
+      teamOptions={teamList}
+      decadeOptions={decadeLabels}
+      target={{ team: machineTarget.team, decadeLabel: machineTarget.decadeLabel }}
+      spinning={machineSpinning}
+      lockTeam={machineSpinning && spinLocks.team}
+      lockDecade={machineSpinning && spinLocks.decade}
+      onComplete={machineSpinning ? completeSpin : undefined}
+      renderTeam={(team, active) => {
+        const colors = teamColors(team)
+        return (
+          <div className="relative flex items-center justify-center">
+            {active && (
+              <div
+                className="pointer-events-none absolute inset-0 -m-2 rounded-lg opacity-40 blur-md"
+                style={{ backgroundColor: colors.bg }}
+                aria-hidden
+              />
+            )}
+            <Badge
+              className={cn(
+                'relative border-0 font-black h-auto text-lg px-3 py-1.5',
+                active && 'scale-[1.02] shadow-[0_0_16px_-2px_var(--tw-shadow-color)]',
+              )}
+              style={{
+                backgroundColor: colors.bg,
+                color: colors.text,
+                ...(active ? { '--tw-shadow-color': colors.bg } as React.CSSProperties : {}),
+              }}
+            >
+              {team}
+            </Badge>
+          </div>
+        )
+      }}
+      renderDecade={(label, active) => (
+        <span
+          className={cn(
+            'text-xl font-bold text-primary tabular-nums',
+            active && 'scale-[1.02]',
+          )}
+        >
+          {label}
+        </span>
+      )}
+    />
+  ) : (
+    <Button onClick={() => spinSlot()} className="w-full">
+      Spin
+    </Button>
+  )
 
   return (
-    <AppShell constrain>
-      <header className="shrink-0 text-center mb-6">
-        <h1 className="text-2xl font-bold tracking-tight">Better 82-0</h1>
-        <p className="text-sm text-muted-foreground mt-1">
-          Round {round + 1}/{ROUNDS} · Open:{' '}
-          <span className="text-primary font-medium">{openLabel}</span>
-        </p>
-        <Badge variant="secondary" className="mt-2">
-          {mode === 'classic' ? 'Classic' : 'HoopIQ'}
-        </Badge>
+    <AppShell constrain wide>
+      <header className="mb-3 shrink-0 text-center md:mb-4">
+        <h1 className="text-xl font-bold tracking-tight text-balance md:text-2xl">Better 82-0</h1>
+        <div className="mt-1.5 flex justify-center">
+          <span className="inline-flex items-center rounded-full bg-primary/15 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-[0.15em] text-primary">
+            Round {round + 1} of {ROUNDS}
+          </span>
+        </div>
+        <div className="mt-2 flex flex-wrap items-center justify-center gap-1.5">
+          {isPickPhase && slot && (
+            <MetadataChip>
+              {pool.length} player{pool.length === 1 ? '' : 's'}
+            </MetadataChip>
+          )}
+          <MetadataChip>Open: {openLabel}</MetadataChip>
+          <MetadataChip>{mode === 'classic' ? 'Classic' : 'HoopIQ'}</MetadataChip>
+        </div>
       </header>
 
-      <div className="shrink-0 grid grid-cols-5 gap-1.5 mb-6">
+      <div className="mb-3 grid shrink-0 grid-cols-5 gap-1 md:mb-4 md:gap-1.5">
         {POSITIONS.map((pos, i) => {
           const filled = roster[i]
           const isOpen = filled == null
+          const slotColors = filled ? teamColors(filled.team) : null
           return (
             <div
               key={pos}
               className={cn(
-                'rounded-lg border py-2 px-1 text-center text-xs transition-colors',
-                isOpen ? 'border-primary/60 bg-primary/10' : 'border-border bg-card/50',
+                'rounded-md border py-1 px-0.5 text-center text-[10px] transition-[border-color,background-color,box-shadow] md:rounded-lg md:py-2 md:px-1 md:text-xs',
+                isOpen
+                  ? 'border-primary/60 bg-primary/10 shadow-[0_0_12px_-4px_oklch(0.75_0.16_75/0.35)]'
+                  : 'border-border/60 bg-card/50',
               )}
+              style={
+                filled && slotColors
+                  ? {
+                      backgroundColor: `${slotColors.bg}18`,
+                      borderColor: `${slotColors.bg}55`,
+                    }
+                  : undefined
+              }
             >
               <div className="font-bold text-foreground">{pos}</div>
-              <div className="truncate text-[10px] text-muted-foreground mt-0.5">
+              <div className="mt-0 truncate text-[9px] text-muted-foreground md:mt-0.5 md:text-[10px]">
                 {filled?.player.split(' ').pop() ?? 'open'}
               </div>
             </div>
@@ -293,142 +406,152 @@ function App() {
         })}
       </div>
 
-      <Card className="shrink-0 mb-6">
-        <CardHeader className="text-center pb-2">
-          <CardDescription className="uppercase tracking-widest text-xs">
-            Slot machine
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="text-center pb-6">
-          {machineTarget ? (
-            <SlotMachine
-              teamOptions={teamList}
-              decadeOptions={decadeLabels}
-              target={{ team: machineTarget.team, decadeLabel: machineTarget.decadeLabel }}
-              spinning={machineSpinning}
-              lockTeam={machineSpinning && spinLocks.team}
-              lockDecade={machineSpinning && spinLocks.decade}
-              onComplete={machineSpinning ? completeSpin : undefined}
-              renderTeam={(team, active) => {
-                const colors = teamColors(team)
-                return (
-                  <Badge
-                    className={cn(
-                      'text-xl font-black px-4 py-2 h-auto border-0 transition-transform',
-                      active && 'scale-105 ring-2 ring-primary/50',
-                    )}
-                    style={{ backgroundColor: colors.bg, color: colors.text }}
+      <div className="flex min-h-0 flex-1 flex-col gap-4 md:flex-row md:gap-6">
+        <aside className="w-full shrink-0 md:w-[272px]">
+          <Card className="border-border/60 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.35)]">
+            <CardContent className="pt-5 pb-5">
+              <p className="mb-3 text-center text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
+                Slot machine
+              </p>
+              {slotMachineBlock}
+              {isPickPhase && slot && (
+                <div className="mt-3 grid grid-cols-1 gap-2">
+                  <Button
+                    type="button"
+                    size="sm"
+                    variant={teamSkipLeft ? 'default' : 'outline'}
+                    disabled={!teamSkipLeft}
+                    onClick={skipTeam}
                   >
-                    {team}
-                  </Badge>
-                )
-              }}
-              renderDecade={(label, active) => (
-                <span
-                  className={cn(
-                    'text-2xl font-bold text-primary tabular-nums transition-transform',
-                    active && 'scale-110',
-                  )}
-                >
-                  {label}
-                </span>
+                    Skip team {teamSkipLeft ? '(1)' : '(used)'}
+                  </Button>
+                  <Button
+                    type="button"
+                    size="sm"
+                    variant="outline"
+                    disabled={!decadeSkipLeft}
+                    onClick={skipDecade}
+                  >
+                    Skip decade {decadeSkipLeft ? '(1)' : '(used)'}
+                  </Button>
+                </div>
               )}
-            />
-          ) : (
-            <Button onClick={() => spinSlot()}>Spin</Button>
+            </CardContent>
+          </Card>
+          {phase === 'spin' && !spinning && !slot && (
+            <p className="mt-2 text-center text-sm text-muted-foreground">
+              Press Spin to start this round.
+            </p>
           )}
-          {phase === 'pick' && slot && (
-            <>
-              <Separator className="my-4" />
-              <div className="flex justify-center gap-2 flex-wrap">
+        </aside>
+
+        <div
+          className={cn(
+            'flex min-h-0 flex-col overflow-hidden transition-[opacity,transform] duration-500 ease-out',
+            isPickPhase
+              ? 'min-h-[240px] flex-1 opacity-100 translate-x-0 md:min-h-0'
+              : 'hidden md:flex md:w-0 md:min-w-0 md:flex-none md:opacity-0 md:translate-x-6 md:pointer-events-none md:overflow-hidden',
+          )}
+        >
+          <section
+            className={cn(
+              'flex min-h-0 flex-1 flex-col overflow-hidden rounded-xl border border-border/60 bg-card/30 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.35)]',
+              selectedPlayer && 'pb-24',
+            )}
+          >
+            <div className="shrink-0 border-b border-border/60 px-3 pb-2 pt-3">
+              <p className="mb-2 text-center text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                Choose a player
+              </p>
+              <PositionFilter
+                value={positionFilter}
+                onChange={setPositionFilter}
+                openPositions={openPositions}
+                compact
+              />
+            </div>
+            {pool.length === 0 ? (
+              <p className="py-8 text-center text-sm text-primary">
+                {positionFilter !== 'ALL'
+                  ? `No matches for ${positionFilter}. Try another filter or a skip.`
+                  : 'No eligible players. Try a skip.'}
+              </p>
+            ) : (
+              <ScrollArea className="min-h-0 flex-1 px-3">
+                <ul className="space-y-1 pb-3 pr-2 pt-2">
+                  {pool.map((p) => {
+                    const eligible = getEligibleSlots(p, roster).map((s) => s.position)
+                    return (
+                      <li key={p.id}>
+                        <PlayerCard
+                          player={p}
+                          mode={mode}
+                          density="compact"
+                          eligiblePositions={eligible}
+                          selected={selectedPlayer?.id === p.id}
+                          onSelect={() => onChoosePlayer(p)}
+                        />
+                      </li>
+                    )
+                  })}
+                </ul>
+              </ScrollArea>
+            )}
+          </section>
+        </div>
+      </div>
+
+      {phase === 'pick' && selectedPlayer && (
+        <div className="fixed inset-x-0 bottom-0 z-50 border-t border-border/80 bg-background/95 px-4 py-3 backdrop-blur-sm">
+          <div className="mx-auto flex w-full max-w-5xl flex-col gap-2">
+            <p className="text-center text-xs text-muted-foreground truncate">
+              <span className="font-semibold text-foreground">{selectedPlayer.player}</span>
+              {pendingSlots.length === 1
+                ? ` · assign to ${pendingSlots[0]!.position}`
+                : ' · choose a position'}
+            </p>
+            {pendingSlots.length === 1 ? (
+              <div className="flex gap-2">
                 <Button
-                  type="button"
                   variant="outline"
-                  size="sm"
-                  disabled={!teamSkipLeft}
-                  onClick={skipTeam}
+                  className="flex-1"
+                  onClick={() => setSelectedPlayer(null)}
                 >
-                  Skip team {teamSkipLeft ? '(1)' : '(used)'}
+                  Cancel
                 </Button>
                 <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  disabled={!decadeSkipLeft}
-                  onClick={skipDecade}
+                  className="flex-[2]"
+                  onClick={() => assignPlayer(selectedPlayer, pendingSlots[0]!.index)}
                 >
-                  Skip decade {decadeSkipLeft ? '(1)' : '(used)'}
+                  Confirm pick
                 </Button>
               </div>
-            </>
-          )}
-        </CardContent>
-      </Card>
-
-      {pendingPick && (
-        <Card className="shrink-0 mb-4 border-primary/40 bg-primary/5">
-          <CardContent className="pt-6 pb-6">
-            <p className="text-sm font-semibold text-center mb-4">
-              Assign <span className="text-primary">{pendingPick.player}</span> to:
-            </p>
-            <div className="flex justify-center gap-2 flex-wrap">
-              {pendingSlots.map(({ position, index }) => (
-                <Button key={position} onClick={() => assignPlayer(pendingPick, index)}>
-                  {position}
+            ) : (
+              <div className="flex gap-2">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="shrink-0"
+                  onClick={() => setSelectedPlayer(null)}
+                >
+                  Cancel
                 </Button>
-              ))}
-              <Button variant="ghost" onClick={() => setPendingPick(null)}>
-                Cancel
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      )}
-
-      {phase === 'pick' && !pendingPick && (
-        <section className="flex flex-1 min-h-0 flex-col overflow-hidden">
-          <div className="shrink-0">
-            <PositionFilter
-              value={positionFilter}
-              onChange={setPositionFilter}
-              openPositions={openPositions}
-            />
+                <div
+                  className={cn(
+                    'grid flex-1 gap-2',
+                    pendingSlots.length === 2 ? 'grid-cols-2' : 'grid-cols-3',
+                  )}
+                >
+                  {pendingSlots.map(({ position, index }) => (
+                    <Button key={position} onClick={() => assignPlayer(selectedPlayer, index)}>
+                      {position}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
-          <p className="shrink-0 text-sm text-muted-foreground mb-3">
-            {pool.length} player{pool.length === 1 ? '' : 's'} · {slot?.team} ({slot?.decadeLabel})
-            {positionFilter !== 'ALL' ? ` · ${positionFilter}` : ''}
-            {mode === 'hoopiq' ? ' · A–Z' : ' · by strength'}
-          </p>
-          {pool.length === 0 ? (
-            <p className="text-center text-primary py-8 text-sm">
-              {positionFilter !== 'ALL'
-                ? `No matches for ${positionFilter}. Try another filter or a skip.`
-                : 'No eligible players. Try a skip.'}
-            </p>
-          ) : (
-            <ScrollArea className="flex-1 min-h-0">
-              <ul className="space-y-2 pr-2">
-                {pool.map((p) => {
-                  const eligible = getEligibleSlots(p, roster).map((s) => s.position)
-                  return (
-                    <li key={p.id}>
-                      <PlayerCard
-                        player={p}
-                        mode={mode}
-                        eligiblePositions={eligible}
-                        onSelect={() => onChoosePlayer(p)}
-                      />
-                    </li>
-                  )
-                })}
-              </ul>
-            </ScrollArea>
-          )}
-        </section>
-      )}
-
-      {phase === 'spin' && !spinning && !slot && (
-        <p className="text-center text-muted-foreground text-sm">Press Spin to start this round.</p>
+        </div>
       )}
     </AppShell>
   )

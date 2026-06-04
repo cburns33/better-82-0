@@ -13,6 +13,7 @@
 | Task | Command |
 |------|---------|
 | Dev server | `cd web && npm install && npm run dev` |
+| UX explore / verify UI | `agent-browser open <url>` → `snapshot -i -c` → `close` (see `.cursor/rules/design-agent-browser.mdc`) |
 | Production build | `npm run build` from repo root (delegates to `web/`) |
 | Refresh metrics data | `pip install -r requirements.txt` then `python scripts/fetch_bbref_seasons.py` and `python scripts/enrich_players.py` |
 | Deploy | Push `main` → Vercel auto-builds (see **Deploy**) |
@@ -120,10 +121,11 @@ better-82-0/
 
 ---
 
-## What we did *not* use
+## Design exploration (agent-browser)
 
-- **Vercel agent-browser** — not used to explore 82-0 or other sites; design/data came from manual reverse engineering + BBRef pipeline.
-- **Original 82-0 as UX reference** — user considers it “lame”; don’t re-copy without intent.
+- **CLI:** Global `agent-browser` (v0.27+). Rule: `.cursor/rules/design-agent-browser.mdc` (applies when editing `web/src/**`).
+- **Reference sites:** OK for UX research; capture snapshots/screenshots as evidence.
+- **Not a design reference:** [82-0.com](https://www.82-0.com/) unless the user explicitly asks — game/data logic was reverse-engineered separately.
 
 ---
 
@@ -158,7 +160,6 @@ Update this section when merging meaningful work.
 - Sound on slot stop
 - Further simulation tuning vs original 82-0 feel
 - Custom domain on Vercel
-- Explore reference sites with agent-browser for UX only (user preference: not 82-0.com)
 
 ---
 
