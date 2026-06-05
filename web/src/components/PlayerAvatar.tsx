@@ -1,4 +1,3 @@
-import { User } from 'lucide-react'
 import { useEffect, useState, type CSSProperties } from 'react'
 import { playerPhotoUrl, teamLogoUrl } from '@/lib/photos'
 import { teamColors } from '@/lib/teams'
@@ -51,7 +50,12 @@ export function PlayerAvatar({ team, baseSlug, size = 88, className }: Props) {
           src={logoUrl}
           alt=""
           aria-hidden
-          className="absolute inset-[6%] z-0 h-[88%] w-[88%] scale-[1.2] object-contain opacity-100"
+          className={cn(
+            'absolute z-0 object-contain opacity-100',
+            showPhoto
+              ? 'inset-[6%] h-[88%] w-[88%] scale-[1.2]'
+              : 'inset-[10%] h-[80%] w-[80%] scale-[1.45]',
+          )}
           loading="lazy"
         />
       ) : null}
@@ -68,14 +72,7 @@ export function PlayerAvatar({ team, baseSlug, size = 88, className }: Props) {
             onError={() => setPhotoFailed(true)}
           />
         </div>
-      ) : (
-        <div
-          className="absolute inset-0 z-[1] flex items-end justify-center pb-[10%]"
-          aria-hidden
-        >
-          <User className="h-[42%] w-[42%] text-white/30" strokeWidth={1.5} />
-        </div>
-      )}
+      ) : null}
     </div>
   )
 }

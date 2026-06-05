@@ -74,6 +74,8 @@ BBREF_HEADSHOT_URL = (
 
 # NBA CDN "missing" placeholder (~4937 B, identical hash across players).
 NBA_PLACEHOLDER_MD5_PREFIX = "7475ba96"
+# Databallr Supabase generic silhouette (~8370 B, shared across ~800+ players).
+DATABALLR_PLACEHOLDER_MD5 = "dfefe20b02725965e4ef3be66efbaa93"
 MIN_CACHED_HEADSHOT_BYTES = 3_500
 
 NAME_ALIASES: dict[str, str] = {
@@ -282,17 +284,26 @@ def resolve_bbref_id(row: dict, bbref_index: dict[tuple[str, str, int], str]) ->
     return None
 
 
-def is_nba_placeholder(content: bytes) -> bool:
-    return (
-        len(content) <= 5_000
-        and hashlib.md5(content).hexdigest().startswith(NBA_PLACEHOLDER_MD5_PREFIX)
-    )
+def is_placeholder_headshot(content: bytes) -> bool:
+    if len(content) < 2_500:
+        return True
+    digest = hashlib.md5(content).hexdigest()
+    if digest == DATABALLR_PLACEHOLDER_MD5:
+        return True
+    return len(content) <= 5_000 and digest.startswith(NBA_PLACEHOLDER_MD5_PREFIX)
+
+
+def is_valid_cached_headshot(path: Path) -> bool:
+    if not path.exists():
+        return False
+    data = path.read_bytes()
+    if len(data) < MIN_CACHED_HEADSHOT_BYTES:
+        return False
+    return not is_placeholder_headshot(data)
 
 
 def is_real_headshot(content: bytes, *, from_bbref: bool = False) -> bool:
-    if len(content) < 2_500:
-        return False
-    if is_nba_placeholder(content):
+    if is_placeholder_headshot(content):
         return False
     if from_bbref:
         return len(content) >= 3_500
@@ -333,8 +344,10 @@ def download_headshot(
 
     for ext in (".png", ".jpg", ".webp"):
         existing = HEADSHOT_DIR / f"{base_slug}{ext}"
-        if existing.exists() and existing.stat().st_size >= MIN_CACHED_HEADSHOT_BYTES and not force:
-            return f"/img/headshots/{base_slug}{ext}", "cached"
+        if existing.exists() and not force:
+            if is_valid_cached_headshot(existing):
+                return f"/img/headshots/{base_slug}{ext}", "cached"
+            existing.unlink(missing_ok=True)
 
     candidates: list[tuple[str, str, bool]] = []
     if image_url:
@@ -397,7 +410,20 @@ def main() -> None:
         help="Skip scraping BBRef season pages (use cached HTML only)",
     )
     parser.add_argument("--force", action="store_true", help="Re-download all headshots")
+    parser.add_argument(
+        "--purge-placeholders",
+        action="store_true",
+        help="Delete cached silhouette placeholders before downloading",
+    )
     args = parser.parse_args()
+
+    if args.purge_placeholders:
+        removed = 0
+        for path in HEADSHOT_DIR.glob("*"):
+            if path.is_file() and not is_valid_cached_headshot(path):
+                path.unlink(missing_ok=True)
+                removed += 1
+        print(f"Purged {removed} invalid placeholder headshot(s)")
 
     if not PLAYERS_PATH.exists():
         raise FileNotFoundError(f"{PLAYERS_PATH} missing. Run enrich_players.py first.")
@@ -503,7 +529,8 @@ def main() -> None:
         if entry.get("photoUrl"):
             continue
         for ext in (".png", ".jpg", ".webp"):
-            if (HEADSHOT_DIR / f"{slug}{ext}").exists():
+            path = HEADSHOT_DIR / f"{slug}{ext}"
+            if is_valid_cached_headshot(path):
                 entry["photoUrl"] = f"/img/headshots/{slug}{ext}"
                 entry["source"] = "cached"
                 break
