@@ -6,6 +6,8 @@
 **Local path (typical):** `~/Projects/82-0-metrics`  
 **What it is:** Fan remake of [82-0.com](https://www.82-0.com/) — five-round draft by **team + decade**, using **WS/48, VORP, OBPM, DBPM, PER** (not box-score stats). Personal / friends use; not affiliated with 82-0 or the NBA.
 
+**Sibling repo (research, not in this tree):** `C:\Users\chase\Documents\Vibecode Projects\that-dude-rocked` — “that dude rocked” Reddit/social signal research. Reads `data/players_advanced.json` from this repo (see that repo’s `HANDOFF.md`).
+
 ---
 
 ## Quick commands

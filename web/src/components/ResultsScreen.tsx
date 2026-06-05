@@ -1,16 +1,14 @@
 import { Check, Copy, Link2, Share2 } from 'lucide-react'
 import { useCallback, useState } from 'react'
-import { PlayerCard } from '@/components/PlayerCard'
+import { ResultLineup } from '@/components/ResultLineup'
 import { ResultsBreakdown } from '@/components/ResultsBreakdown'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
 import {
   buildShareUrl,
   clearShareHash,
   formatShareText,
 } from '@/lib/shareRun'
 import type { GameMode, Player, TeamResult } from '@/types'
-import { POSITIONS } from '@/types'
 
 type CopyKind = 'link' | 'text' | null
 
@@ -80,9 +78,9 @@ export function ResultsScreen({
 
   return (
     <>
-      <header className="mb-6 text-center">
+      <header className="mb-4 text-center">
         <h1 className="text-2xl font-bold tracking-tight">
-          {shared ? 'Shared lineup' : 'Season complete'}
+          {shared ? 'Shared lineup' : 'Your lineup'}
         </h1>
         {shared && (
           <p className="mt-1 text-xs text-muted-foreground">
@@ -91,36 +89,13 @@ export function ResultsScreen({
         )}
       </header>
 
-      <Card className="border-2 text-center" style={{ borderColor: result.color }}>
-        <CardContent className="pt-8 pb-8">
-          <p
-            className="text-6xl font-black tabular-nums tracking-tight"
-            style={{ color: result.color }}
-          >
-            {result.wins}–{result.losses}
-          </p>
-          <p className="mt-2 text-xl font-semibold" style={{ color: result.color }}>
-            {result.grade} · {result.label}
-          </p>
-          <p className="mt-4 text-sm text-muted-foreground">
-            Team strength <span className="font-mono text-foreground">{result.teamOvr}</span>
-          </p>
-        </CardContent>
-      </Card>
+      <ResultLineup roster={roster} result={result} mode={mode} />
 
-      {filled.length > 0 && (
+      {filled.length > 0 && mode === 'classic' && (
         <div className="mt-6">
           <ResultsBreakdown roster={filled} />
         </div>
       )}
-
-      <div className="mt-6 space-y-2">
-        {roster.map((p, i) =>
-          p ? (
-            <PlayerCard key={p.id} player={p} mode="classic" eligiblePositions={[POSITIONS[i]!]} />
-          ) : null,
-        )}
-      </div>
 
       {!shared && (
         <div className="mt-6 space-y-2">

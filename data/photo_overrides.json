@@ -1,0 +1,8 @@
+{
+  "_comment": "Keys are baseSlug from players_advanced.json / unmatched_photos.csv. Re-run: python scripts/fetch_player_photos.py --skip-bbref-scrape",
+  "_fields": {
+    "bbrefId": "From BBRef URL: basketball-reference.com/players/j/jamesaa01.html → jamesaa01",
+    "nbaId": "NBA personId (number). Used if bbrefId missing.",
+    "imageUrl": "Optional direct image URL to download instead of CDN lookups."
+  }
+}

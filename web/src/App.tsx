@@ -471,7 +471,7 @@ function App() {
               </p>
             ) : (
               <ScrollArea className="min-h-0 flex-1 px-3">
-                <ul className="space-y-1 pb-3 pr-2 pt-2">
+                <ul className="grid grid-cols-1 gap-2 pb-3 pr-2 pt-2 md:grid-cols-2 2xl:grid-cols-3">
                   {pool.map((p) => {
                     const eligible = getEligibleSlots(p, roster).map((s) => s.position)
                     return (
@@ -479,7 +479,7 @@ function App() {
                         <PlayerCard
                           player={p}
                           mode={mode}
-                          density="compact"
+                          density="grid"
                           eligiblePositions={eligible}
                           selected={selectedPlayer?.id === p.id}
                           onSelect={() => onChoosePlayer(p)}
